@@ -1,0 +1,17 @@
+<form name="formDemo">
+    <leaf-select options="sampleOptions" name="sampleSelect" ng-model="sampleSelect" required></leaf-select>
+    <input type="number" ng-model="text" required min="3" max="100" placeholder="min 3, max 100">
+    <leaf-toggle ng-model="state" label="Toggle the state"></leaf-toggle>
+    <leaf-radio ng-model="sex" required>
+        <label class="radio"><input type="radio" name="sex" value="M">男</label>
+        <label class="radio"><input type="radio" name="sex" value="F">女</label>
+    </leaf-radio>
+    <leaf-radio radios="cities" ng-model="city" horizontal required></leaf-radio>
+    <leaf-checkbox ng-model="selectedHobbies" required>
+        <label class="checkbox"><input type="checkbox" name="hobby" value="basketball" required>篮球</label>
+        <label class="checkbox"><input type="checkbox" name="hobby" value="ping-pong" required>乒乓球</label>
+        <label class="checkbox"><input type="checkbox" name="hobby" value="swim" required>游泳</label>
+    </leaf-checkbox>
+    <leaf-checkbox checkboxes="langs" ng-model="selectedLang" horizontal required></leaf-checkbox>
+    <div>Adipisicing voluptate fugit assumenda quaerat debitis. Illo amet reprehenderit assumenda optio officiis. Molestiae impedit libero ipsam impedit hic in sapiente. Quis vitae modi laboriosam dignissimos vitae. Facere a odio minima adipisicing doloribus. Saepe labore similique recusandae repellendus suscipit at qui neque ipsa? Obcaecati dolorum deserunt eum nisi blanditiis aperiam! Rerum nesciunt voluptatibus ut fugiat facere dolorem repellat! Voluptatibus earum quasi.</div>
+</form>

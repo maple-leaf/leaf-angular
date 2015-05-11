@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>普天药械</title>
+        <link href="css/global.css" rel="stylesheet" type="text/css" media="all">
+        <!--<link href="css/home.css" rel="stylesheet" type="text/css" media="all">-->
+        <script src="js/leaf.js" type="text/javascript"></script>
+        <script src="js/vendors/angular-route.min.js" type="text/javascript"></script>
+        <script src="js/app.js" type="text/javascript"></script>
+    </head>
+    <body ng-app="ptwx">
+        <leaf-wrapper ng-controller="homeCtrl">
+            <leaf-header><div>Leaf-angular</div></leaf-header>
+            <leaf-content>
+                <ng-view onload="$refresh()"></ng-view>
+            </leaf-content>
+            <leaf-footer>
+                <a href="/">Home</a>
+                <a href="#!/form">Form</a>
+            </leaf-footer>
+        </leaf-wrapper>
+    </body>
+</html>

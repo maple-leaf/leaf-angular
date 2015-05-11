@@ -1,0 +1,26 @@
+{
+  "name": "requirejs-project-structure",
+  "version": "0.0.0",
+  "description": "build a normal html project using requirejs",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "test-site"
+  },
+  "keywords": [
+    "requirejs",
+    "html5"
+  ],
+  "author": "maple-leaf",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-connect": "~0.9.0",
+    "grunt-contrib-copy": "~0.7.0",
+    "grunt-contrib-sass": "~0.8.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-task-loader": "~0.3.0",
+    "time-grunt": "~1.0.0"
+  }
+}
