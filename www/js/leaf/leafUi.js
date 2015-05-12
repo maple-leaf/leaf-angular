@@ -2,29 +2,29 @@
     var leafUi = angular.module('leafUi', []);
 
     /**
-     * Function module: leafPopup
-     * @usage
-     * leafPopup.init({
-     *      title,
-     *      className,
-     *      template/templateUrl, // templateUrl has high priority
-     *      title/headerHtml,   // headerHtml has high priority
-     *      footerHtml,
-     *      btns: [
-     *          {
-     *              name,   // required
-     *              className,
-     *              onTap: function() {
-     *                  this.close();
-     *                  //this.remove();
-     *              }
-     *          }
-     *      ] || false  // when set to false and footerHtml not being specified, footer will disapper
-     *
-     * })
-     *
-     * @return {undefined}
-     */
+        * Function module: leafPopup
+        * @usage
+        * leafPopup.init({
+        *      title,
+        *      className,
+        *      template/templateUrl, // templateUrl has high priority
+        *      title/headerHtml,   // headerHtml has high priority
+        *      footerHtml,
+        *      btns: [
+        *          {
+        *              name,   // required
+        *              className,
+        *              onTap: function() {
+        *                  this.close();
+        *                  //this.remove();
+        *              }
+        *          }
+        *      ] || false  // when set to false and footerHtml not being specified, footer will disapper
+        *
+        * })
+        *
+        * @return {undefined}
+    */
     leafUi.factory('leafPopup', function($document, $compile, $rootScope, $http, $q) {
         return {
             init: function(options) {
@@ -142,7 +142,7 @@
         }
     });
 
-    leafUi.directive('leafContent', function(leafScroll) {
+    leafUi.directive('leafContent', function($rootScope, $timeout, leafScroll) {
         var tpl = '<div class="leaf-content-wrapper" ng-transclude>'
                 + '</div>';
         return {
@@ -151,15 +151,21 @@
             transclude: true,
             link: function(scope, ele, attrs) {
                 // add a empty block which height equal footer's height to make IScroll can reach bottom when init
-                var div = document.createElement('div');
+                var div = document.createElement('div'), height;
                 div.text = "&nbsp;";
-                div.setAttribute('style', 'height: ' + ele.parent().find('leaf-footer')[0].clientHeight + 'px');
+                height = ele.parent().find('leaf-footer')[0].clientHeight;
+                if (angular.isDefined(attrs.offset) && !isNaN(parseFloat(attrs.offset))) {
+                    height += parseFloat(attrs.offset);
+                }
+                div.setAttribute('style', 'height: ' + height + 'px');
                 ele.children().append(div);
                 var scroll = leafScroll.init(ele[0], {
                     click: true
                 });
-                scroll.refresh();
-                scope.$refresh = function() {
+                $timeout(function() {
+                    scroll.refresh();
+                }, 30);
+                $rootScope.$refresh = scope.$refresh = function() {
                     // not always work properly after removed
                     //div.remove();
                     scroll.refresh();
@@ -268,7 +274,7 @@
         }
     });
 
-    leafUi.directive('leafRadio', function($compile) {
+    leafUi.directive('leafRadio', function() {
         var tpl = "<div ng-class='{\"leaf-radio-wrapper horizontal\": horizontal, \"leaf-radio-wrapper\": !horizontal}' ng-transclude>"
                 + "</div>";
         return {
@@ -329,7 +335,7 @@
         }
     });
 
-    leafUi.directive('leafCheckbox', function($compile) {
+    leafUi.directive('leafCheckbox', function() {
         var tpl = "<div ng-class='{\"leaf-checkbox-wrapper horizontal\": horizontal, \"leaf-checkbox-wrapper\": !horizontal}' ng-transclude>"
                 + "</div>";
         return {
@@ -411,6 +417,55 @@
                         ctrl.$validate();
                     });
                 });
+            }
+        }
+    });
+
+    leafUi.directive('leafTab', function($rootScope, $compile) {
+        return {
+            restrict: 'E',
+            link: function(scope, ele, attrs) {
+                if (!attrs.hasOwnProperty('current')) {
+                    ele.addClass('ng-hide');
+                }
+                scope.$on('tabSwitching', function(e, tab) {
+                    if (angular.equals('#' + attrs.id, tab)) {
+                        ele.removeClass('ng-hide');
+                    } else {
+                        ele.addClass('ng-hide');
+                    }
+                    $rootScope.$broadcast('tabSwitched');
+                });
+            }
+        }
+    });
+
+    leafUi.directive('leafTabsNav', function($rootScope, $compile) {
+        return {
+            restrict: 'E',
+            link: function(scope, ele, attrs) {
+                var switchedTab = 0, tabs = ele.children().length;
+                function bindClick() {
+                    switchedTab = 0;
+                    angular.forEach(ele.children(), function(nav) {
+                        nav.onclick = function() {
+                            var target = this.getAttribute('href') || this.getAttribute('data-href');
+                            $rootScope.$broadcast('tabSwitching', target);
+                            unBindClick();
+                        }
+                    });
+                }
+                function unBindClick() {
+                    ele.children().unbind('click');
+                }
+                scope.$on('tabSwitched', function() {
+                    switchedTab++;
+                    if (switchedTab === tabs) {
+                        bindClick();
+                        $rootScope.$refresh();
+                    }
+                });
+                bindClick();
             }
         }
     });

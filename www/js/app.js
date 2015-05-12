@@ -1,23 +1,6 @@
-var ptwx = angular.module('ptwx', ['leaf', 'ngRoute']);
-
-ptwx.config(function($routeProvider, $locationProvider) {
-    $routeProvider
-    .when('/form', {
-        templateUrl: 'form-demo.html',
-        controller: 'formDemoCtrl',
-    })
-    .when('/', {
-        templateUrl: 'home.html',
-        controller: 'homeCtrl'
-    });
-    $locationProvider.html5Mode(false);
-    $locationProvider.hashPrefix('!');
-});
+var ptwx = angular.module('ptwx', ['leaf']);
 
 ptwx.controller('homeCtrl', function($scope) {
-});
-
-ptwx.controller('formDemoCtrl', function($scope) {
     $scope.sampleOptions = [
         {
             text: "option A",
@@ -52,6 +35,4 @@ ptwx.controller('formDemoCtrl', function($scope) {
             value: "fr"
         }
     ];
-});
-ptwx.controller('homeCtrl', function($scope) {
 });

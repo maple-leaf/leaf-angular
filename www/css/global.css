@@ -3603,6 +3603,11 @@ leaf-select, leaf-radio, leaf-checkbox, leaf-toggle {
   text-align: center;
 }
 
+/* line 1, ../../scss/leaf/_leafTab.scss */
+leaf-tab {
+  display: block;
+}
+
 /* line 4, ../../scss/global.scss */
 body {
   font-size: 32px;
