@@ -3305,6 +3305,7 @@ td, th {
   content: "";
 }
 
+/* Sidebar */
 /* Form */
 /* line 3, ../../scss/leaf/_main.scss */
 html {
@@ -3329,16 +3330,33 @@ leaf-wrapper, leaf-content {
 }
 
 /* line 22, ../../scss/leaf/_main.scss */
+leaf-sidebar {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20%;
+  height: 100%;
+  overflow: hidden;
+  background: #cacaca;
+  z-index: 9999;
+}
+/* line 32, ../../scss/leaf/_main.scss */
+leaf-sidebar.show-sidebar {
+  display: block;
+}
+
+/* line 37, ../../scss/leaf/_main.scss */
 .has-header leaf-content {
   top: 60px;
 }
 
-/* line 27, ../../scss/leaf/_main.scss */
+/* line 42, ../../scss/leaf/_main.scss */
 .has-footer leaf-content {
   bottom: 60px;
 }
 
-/* line 32, ../../scss/leaf/_main.scss */
+/* line 47, ../../scss/leaf/_main.scss */
 leaf-header {
   position: absolute;
   top: 0;
@@ -3346,7 +3364,7 @@ leaf-header {
   width: 100%;
 }
 
-/* line 39, ../../scss/leaf/_main.scss */
+/* line 54, ../../scss/leaf/_main.scss */
 leaf-footer {
   position: absolute;
   bottom: 0;
@@ -3354,11 +3372,12 @@ leaf-footer {
   width: 100%;
 }
 
-/* line 46, ../../scss/leaf/_main.scss */
+/* line 61, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper {
   min-height: 100%;
 }
 
+/* Sidebar */
 /* Form */
 /* line 4, ../../scss/leaf/_leafForm.scss */
 input[type=number], input[type="text"], input[type="password"] {

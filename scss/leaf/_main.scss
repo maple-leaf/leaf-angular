@@ -19,6 +19,21 @@ leaf-wrapper, leaf-content {
     overflow: hidden;
 }
 
+leaf-sidebar {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: $sidebar-width;
+    height: 100%;
+    overflow: hidden;
+    background: $sidebar-bg;
+    z-index: 9999;
+    &.show-sidebar {
+        display: block;
+    }
+}
+
 .has-header leaf-content {
     top: 60px;
 }

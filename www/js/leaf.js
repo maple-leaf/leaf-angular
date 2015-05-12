@@ -393,7 +393,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
 
                 return new IScroll(ele, _options);
             }
-        }
+        };
     });
 
     leafUi.directive('leafContent', function($rootScope, $timeout, leafScroll) {
@@ -425,10 +425,10 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
                     scroll.refresh();
                 };
             }
-        }
+        };
     });
 
-    leafUi.directive('leafHeader', function(leafScroll, $document) {
+    leafUi.directive('leafHeader', function($document, leafScroll) {
         var tpl = '<div class="leaf-header-wrapper" ng-transclude>'
                 + '</div>';
         return {
@@ -438,7 +438,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
             link: function(scope, ele, attrs) {
                 $document.find('leaf-wrapper').addClass('has-header');
             }
-        }
+        };
     });
 
     leafUi.directive('leafFooter', function(leafScroll, $document) {
@@ -451,7 +451,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
             link: function(scope, ele, attrs) {
                 $document.find('leaf-wrapper').addClass('has-footer');
             }
-        }
+        };
     });
 
     leafUi.directive('leafSelect', function(leafPopup, $document) {
@@ -502,7 +502,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
                 }, true);
                 copyOptions();
             }
-        }
+        };
     });
 
     leafUi.directive('leafToggle', function() {
@@ -525,7 +525,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
             link: function(scope, ele, attrs) {
                 ele.find('span')[0].textContent = attrs.label;
             }
-        }
+        };
     });
 
     leafUi.directive('leafRadio', function() {
@@ -586,7 +586,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
                     });
                 });
             }
-        }
+        };
     });
 
     leafUi.directive('leafCheckbox', function() {
@@ -672,7 +672,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
                     });
                 });
             }
-        }
+        };
     });
 
     leafUi.directive('leafTab', function($rootScope, $compile) {
@@ -691,7 +691,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
                     $rootScope.$broadcast('tabSwitched');
                 });
             }
-        }
+        };
     });
 
     leafUi.directive('leafTabsNav', function($rootScope, $compile) {
@@ -721,7 +721,33 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
                 });
                 bindClick();
             }
-        }
+        };
+    });
+
+    leafUi.directive('leafSidebarToggle', function($rootScope) {
+        return {
+            restrict: 'A',
+            link: function(scope, ele, attrs) {
+                ele.bind('click', function() {
+                    $rootScope.$broadcast('toggleLeafSidebar', attrs.leafSidebarToggle);
+                });
+            }
+        };
+    });
+
+    leafUi.directive('leafSidebar', function() {
+        return {
+            restrict: 'E',
+            link: function(scope, ele, attrs) {
+                scope.$on('toggleLeafSidebar', function(e, sidebar) {
+                    if (sidebar === "") {
+                        ele.toggleClass('show-sidebar');
+                    } else if (attrs.id === sidebar) {
+                        ele.toggleClass('show-sidebar');
+                    }
+                });
+            }
+        };
     });
 })(IScroll, window);
 

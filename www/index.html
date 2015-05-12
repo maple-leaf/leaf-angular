@@ -11,7 +11,7 @@
     </head>
     <body ng-app="ptwx">
         <leaf-wrapper ng-controller="homeCtrl">
-            <leaf-header><div>Leaf-angular</div></leaf-header>
+            <leaf-header><div leaf-sidebar-toggle>Leaf-angular</div></leaf-header>
             <leaf-content>
                 <leaf-tab id="homeTab" current>
                     <p>
@@ -39,6 +39,9 @@
                     </form>
                 </leaf-tab>
             </leaf-content>
+            <leaf-sidebar>
+                <div>xxx</div>
+            </leaf-sidebar>
             <leaf-footer>
                 <leaf-tabs-nav>
                     <a href="#homeTab">Home</a>

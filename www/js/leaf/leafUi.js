@@ -139,7 +139,7 @@
 
                 return new IScroll(ele, _options);
             }
-        }
+        };
     });
 
     leafUi.directive('leafContent', function($rootScope, $timeout, leafScroll) {
@@ -171,10 +171,10 @@
                     scroll.refresh();
                 };
             }
-        }
+        };
     });
 
-    leafUi.directive('leafHeader', function(leafScroll, $document) {
+    leafUi.directive('leafHeader', function($document, leafScroll) {
         var tpl = '<div class="leaf-header-wrapper" ng-transclude>'
                 + '</div>';
         return {
@@ -184,7 +184,7 @@
             link: function(scope, ele, attrs) {
                 $document.find('leaf-wrapper').addClass('has-header');
             }
-        }
+        };
     });
 
     leafUi.directive('leafFooter', function(leafScroll, $document) {
@@ -197,7 +197,7 @@
             link: function(scope, ele, attrs) {
                 $document.find('leaf-wrapper').addClass('has-footer');
             }
-        }
+        };
     });
 
     leafUi.directive('leafSelect', function(leafPopup, $document) {
@@ -248,7 +248,7 @@
                 }, true);
                 copyOptions();
             }
-        }
+        };
     });
 
     leafUi.directive('leafToggle', function() {
@@ -271,7 +271,7 @@
             link: function(scope, ele, attrs) {
                 ele.find('span')[0].textContent = attrs.label;
             }
-        }
+        };
     });
 
     leafUi.directive('leafRadio', function() {
@@ -332,7 +332,7 @@
                     });
                 });
             }
-        }
+        };
     });
 
     leafUi.directive('leafCheckbox', function() {
@@ -418,7 +418,7 @@
                     });
                 });
             }
-        }
+        };
     });
 
     leafUi.directive('leafTab', function($rootScope, $compile) {
@@ -437,7 +437,7 @@
                     $rootScope.$broadcast('tabSwitched');
                 });
             }
-        }
+        };
     });
 
     leafUi.directive('leafTabsNav', function($rootScope, $compile) {
@@ -467,6 +467,32 @@
                 });
                 bindClick();
             }
-        }
+        };
+    });
+
+    leafUi.directive('leafSidebarToggle', function($rootScope) {
+        return {
+            restrict: 'A',
+            link: function(scope, ele, attrs) {
+                ele.bind('click', function() {
+                    $rootScope.$broadcast('toggleLeafSidebar', attrs.leafSidebarToggle);
+                });
+            }
+        };
+    });
+
+    leafUi.directive('leafSidebar', function() {
+        return {
+            restrict: 'E',
+            link: function(scope, ele, attrs) {
+                scope.$on('toggleLeafSidebar', function(e, sidebar) {
+                    if (sidebar === "") {
+                        ele.toggleClass('show-sidebar');
+                    } else if (attrs.id === sidebar) {
+                        ele.toggleClass('show-sidebar');
+                    }
+                });
+            }
+        };
     });
 })(IScroll, window);
