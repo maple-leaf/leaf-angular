@@ -1,6 +1,6 @@
 var ptwx = angular.module('ptwx', ['leaf']);
 
-ptwx.controller('homeCtrl', function($scope) {
+ptwx.controller('homeCtrl', function($scope, leafActionSheet) {
     $scope.sampleOptions = [
         {
             text: "option A",
@@ -35,4 +35,7 @@ ptwx.controller('homeCtrl', function($scope) {
             value: "fr"
         }
     ];
+    $scope.showActions = function() {
+        leafActionSheet.init();
+    };
 });

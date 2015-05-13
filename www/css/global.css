@@ -3307,18 +3307,19 @@ td, th {
 
 /* Sidebar */
 /* Form */
-/* line 3, ../../scss/leaf/_main.scss */
+/* ActionSheet */
+/* line 4, ../../scss/leaf/_main.scss */
 html {
   font-size: 16px;
   font-family: Arial, SimHei, "榛戜綋";
 }
 
-/* line 8, ../../scss/leaf/_main.scss */
+/* line 9, ../../scss/leaf/_main.scss */
 body {
   font-size: 2rem;
 }
 
-/* line 12, ../../scss/leaf/_main.scss */
+/* line 13, ../../scss/leaf/_main.scss */
 leaf-wrapper, leaf-content {
   display: block;
   position: absolute;
@@ -3329,34 +3330,89 @@ leaf-wrapper, leaf-content {
   overflow: hidden;
 }
 
-/* line 22, ../../scss/leaf/_main.scss */
+/* line 23, ../../scss/leaf/_main.scss */
 leaf-sidebar {
-  display: none;
+  display: block;
   position: absolute;
   left: 0;
   top: 0;
-  width: 20%;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  -webkit-transform: translate(-100%, 0) translateZ(0);
+  -moz-transform: translate(-100%, 0) translateZ(0);
+  -ms-transform: translate(-100%, 0) translateZ(0);
+  -o-transform: translate(-100%, 0) translateZ(0);
+  transform: translate(-100%, 0) translateZ(0);
+  -webkit-transition: -webkit-transform 0.2s linear;
+  -moz-transition: -moz-transform 0.2s linear;
+  transition: transform 0.2s linear;
+}
+/* line 33, ../../scss/leaf/_main.scss */
+leaf-sidebar .leaf-sidebar-wrapper {
+  width: 120px;
   height: 100%;
   overflow: hidden;
-  background: #cacaca;
-  z-index: 9999;
+  background: #fff;
+  position: relative;
+  z-index: 10;
+  display: inline-block;
+  vertical-align: top;
 }
-/* line 32, ../../scss/leaf/_main.scss */
+/* line 43, ../../scss/leaf/_main.scss */
+leaf-sidebar.right-side {
+  -webkit-transform: translate(100%, 0) translateZ(0);
+  -moz-transform: translate(100%, 0) translateZ(0);
+  -ms-transform: translate(100%, 0) translateZ(0);
+  -o-transform: translate(100%, 0) translateZ(0);
+  transform: translate(100%, 0) translateZ(0);
+  text-align: right;
+}
+/* line 46, ../../scss/leaf/_main.scss */
+leaf-sidebar.right-side .leaf-sidebar-wrapper {
+  text-align: left;
+}
+/* line 50, ../../scss/leaf/_main.scss */
+leaf-sidebar .leaf-sidebar-toggler {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  -webkit-transition: opacity 0.1s linear 0;
+  -moz-transition: opacity 0.1s linear 0;
+  transition: opacity 0.1s linear 0;
+}
+/* line 61, ../../scss/leaf/_main.scss */
 leaf-sidebar.show-sidebar {
-  display: block;
+  -webkit-transform: translate(0, 0) translateZ(0);
+  -moz-transform: translate(0, 0) translateZ(0);
+  -ms-transform: translate(0, 0) translateZ(0);
+  -o-transform: translate(0, 0) translateZ(0);
+  transform: translate(0, 0) translateZ(0);
+}
+/* line 63, ../../scss/leaf/_main.scss */
+leaf-sidebar.show-sidebar .leaf-sidebar-toggler {
+  opacity: 1;
+  -webkit-transition: opacity 0.1s linear 0.2s;
+  -moz-transition: opacity 0.1s linear 0.2s;
+  transition: opacity 0.1s linear 0.2s;
 }
 
-/* line 37, ../../scss/leaf/_main.scss */
+/* line 70, ../../scss/leaf/_main.scss */
 .has-header leaf-content {
   top: 60px;
 }
 
-/* line 42, ../../scss/leaf/_main.scss */
+/* line 75, ../../scss/leaf/_main.scss */
 .has-footer leaf-content {
   bottom: 60px;
 }
 
-/* line 47, ../../scss/leaf/_main.scss */
+/* line 80, ../../scss/leaf/_main.scss */
 leaf-header {
   position: absolute;
   top: 0;
@@ -3364,7 +3420,7 @@ leaf-header {
   width: 100%;
 }
 
-/* line 54, ../../scss/leaf/_main.scss */
+/* line 87, ../../scss/leaf/_main.scss */
 leaf-footer {
   position: absolute;
   bottom: 0;
@@ -3372,13 +3428,14 @@ leaf-footer {
   width: 100%;
 }
 
-/* line 61, ../../scss/leaf/_main.scss */
+/* line 94, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper {
   min-height: 100%;
 }
 
 /* Sidebar */
 /* Form */
+/* ActionSheet */
 /* line 4, ../../scss/leaf/_leafForm.scss */
 input[type=number], input[type="text"], input[type="password"] {
   width: 100%;
@@ -3597,27 +3654,25 @@ leaf-select, leaf-radio, leaf-checkbox, leaf-toggle {
 .leaf-popup {
   position: relative;
   z-index: 1000;
-  height: 120px;
   display: table-cell;
-  padding: 0 5%;
+  padding: 0 5% 36px;
   vertical-align: middle;
-  padding-bottom: 36px;
   box-sizing: border-box;
 }
 
-/* line 35, ../../scss/leaf/_leafPopup.scss */
+/* line 33, ../../scss/leaf/_leafPopup.scss */
 .leaf-popup-inner {
   border: 1px solid #A7A2A2;
   background-color: #fff;
 }
 
-/* line 41, ../../scss/leaf/_leafPopup.scss */
+/* line 39, ../../scss/leaf/_leafPopup.scss */
 .leaf-popup-header h5 {
   margin: 0;
   line-height: 1.2;
 }
 
-/* line 47, ../../scss/leaf/_leafPopup.scss */
+/* line 45, ../../scss/leaf/_leafPopup.scss */
 .leaf-popup-footer {
   text-align: center;
 }
@@ -3627,6 +3682,73 @@ leaf-tab {
   display: block;
 }
 
+/* Sidebar */
+/* Form */
+/* ActionSheet */
+/* line 4, ../../scss/leaf/_leafActionSheet.scss */
+.leaf-action-sheet {
+  display: block;
+  overflow: hidden;
+}
+/* line 7, ../../scss/leaf/_leafActionSheet.scss */
+.leaf-action-sheet .leaf-popup {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 15px;
+  display: block;
+  -webkit-animation: slideUp 0.2s ease-in;
+  -moz-animation: slideUp 0.2s ease-in;
+  animation: slideUp 0.2s ease-in;
+}
+/* line 16, ../../scss/leaf/_leafActionSheet.scss */
+.leaf-action-sheet .leaf-popup-overlay {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+/* line 19, ../../scss/leaf/_leafActionSheet.scss */
+.leaf-action-sheet .leaf-popup-inner {
+  border: none;
+}
+/* line 22, ../../scss/leaf/_leafActionSheet.scss */
+.leaf-action-sheet .btn {
+  display: block;
+  border: 1px solid #e6e6e6;
+  margin-top: 15px;
+}
+
+@-webkit-keyframes slideUp {
+  from {
+    -webkit-transform: translate(0, 100%) translateZ(0);
+  }
+  to {
+    -webkit-transform: translate(0, 0) translateZ(0);
+  }
+}
+@-moz-keyframes slideUp {
+  from {
+    -moz-transform: translate(0, 100%) translateZ(0);
+  }
+  to {
+    -moz-transform: translate(0, 0) translateZ(0);
+  }
+}
+@keyframes slideUp {
+  from {
+    -webkit-transform: translate(0, 100%) translateZ(0);
+    -moz-transform: translate(0, 100%) translateZ(0);
+    -ms-transform: translate(0, 100%) translateZ(0);
+    -o-transform: translate(0, 100%) translateZ(0);
+    transform: translate(0, 100%) translateZ(0);
+  }
+  to {
+    -webkit-transform: translate(0, 0) translateZ(0);
+    -moz-transform: translate(0, 0) translateZ(0);
+    -ms-transform: translate(0, 0) translateZ(0);
+    -o-transform: translate(0, 0) translateZ(0);
+    transform: translate(0, 0) translateZ(0);
+  }
+}
 /* line 4, ../../scss/global.scss */
 body {
   font-size: 32px;

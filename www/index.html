@@ -14,7 +14,7 @@
             <leaf-header><div leaf-sidebar-toggle>Leaf-angular</div></leaf-header>
             <leaf-content>
                 <leaf-tab id="homeTab" current>
-                    <p>
+                    <p ng-click="showActions()">
                         Author: maple-leaf,
                         Email: tjfdfs@gmail.com
                     </p>
@@ -41,6 +41,11 @@
             </leaf-content>
             <leaf-sidebar>
                 <div>xxx</div>
+                <div ng-click="$hideSidebar()">hide</div>
+            </leaf-sidebar>
+            <leaf-sidebar right id="s1">
+                <div>right</div>
+                <div ng-click="$hideSidebar()">hide</div>
             </leaf-sidebar>
             <leaf-footer>
                 <leaf-tabs-nav>

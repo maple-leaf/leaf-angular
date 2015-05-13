@@ -287,13 +287,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
                 };
                 _options = angular.extend(_defaultOptions, options || {});
                 proto = {
-                    show: function() {
-                        angular.element(this.ele).removeClass('ng-hide');
-                    },
                     close: function() {
-                        angular.element(this.ele).addClass('ng-hide');
-                    },
-                    remove: function() {
                         this.ele.remove();
                     }
                 };
@@ -347,7 +341,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
                     }
                     deferred = $q.defer();
                     var promise = (function() {
-                        var html = '<div class="leaf-popup-wrapper" id="' + id + '"><div class="leaf-popup-overlay"></div><div class="leaf-popup"><div class="leaf-popup-inner">'
+                        var html = '<div class="' + wrapperClass + '" id="' + id + '"><div class="leaf-popup-overlay"></div><div class="leaf-popup"><div class="leaf-popup-inner">'
                             + headerHtml
                             + '<div class="leaf-popup-content">';
                         if (_options.templateUrl) {
@@ -373,6 +367,7 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
                         $document.find('leaf-wrapper').append(ele);
                         $compile(ele)(scope);
                         _this.ele = document.getElementById(id);
+                        _options.afterPopup && _options.afterPopup.call(_this, ele);
                     }, function() {
                     });
                 };
@@ -380,6 +375,29 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
                 angular.extend(popup.prototype, proto);
 
                 return new popup();
+            }
+        };
+    });
+
+    leafUi.factory('leafActionSheet', function(leafPopup) {
+        return {
+            init: function(options) {
+                var _defaultOptions, _options;
+                _defaultOptions = {
+                    className: 'leaf-action-sheet',
+                    btns: [
+                        {
+                            name: 'cancel',
+                            text: 'cancel',
+                            className: 'btn btn-danger',
+                            onTap: function() {
+                                this.close();
+                            }
+                        }
+                    ]
+                };
+                _options = angular.extend(_defaultOptions, options || {});
+                leafPopup.init(_options);
             }
         };
     });
@@ -735,16 +753,44 @@ e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}
         };
     });
 
-    leafUi.directive('leafSidebar', function() {
+    leafUi.directive('leafSidebar', function($timeout) {
+        // http://angular-tips.com/blog/2014/03/transclusion-and-scopes/
         return {
             restrict: 'E',
-            link: function(scope, ele, attrs) {
+            scope: true,
+            transclude: true,
+            link: function(scope, ele, attrs, ctrl, transclude) {
+                var toggler;
+                if (angular.isDefined(attrs.right)) {
+                    // hide the right sidebar to prevent seeing animation when add 'right-side' class
+                    ele.attr('style', 'display: none');
+                    ele.addClass('right-side');
+                    $timeout(function() {
+                        ele.attr('style', 'display: block');
+                    }, 50);
+                }
                 scope.$on('toggleLeafSidebar', function(e, sidebar) {
-                    if (sidebar === "") {
-                        ele.toggleClass('show-sidebar');
-                    } else if (attrs.id === sidebar) {
-                        ele.toggleClass('show-sidebar');
-                    }
+                    scope.$apply(function() {
+                        if (sidebar === "") {
+                            ele.toggleClass('show-sidebar');
+                        } else if (attrs.id === sidebar) {
+                            ele.toggleClass('show-sidebar');
+                        }
+                    });
+                });
+                toggler = angular.element('<div class="leaf-sidebar-toggler"></div>');
+                toggler.bind('click', function() {
+                    ele.removeClass('show-sidebar');
+                });
+                ele.append(toggler);
+                scope.$hideSidebar = function() {
+                    ele.removeClass('show-sidebar');
+                };
+                // make transcludedHtml and directive has same scope
+                transclude(scope, function(clone, scope) {
+                    var wrapper = angular.element('<div class="leaf-sidebar-wrapper"></div>');
+                    wrapper.append(clone);
+                    ele.append(wrapper);
                 });
             }
         };
