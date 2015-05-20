@@ -169,14 +169,16 @@
             transclude: true,
             link: function(scope, ele, attrs) {
                 // add a empty block which height equal footer's height to make IScroll can reach bottom when init
-                var div = document.createElement('div'), height;
-                div.text = "&nbsp;";
-                height = ele.parent().find('leaf-footer')[0].clientHeight;
-                if (angular.isDefined(attrs.offset) && !isNaN(parseFloat(attrs.offset))) {
-                    height += parseFloat(attrs.offset);
+                var footer = ele.parent().find('leaf-footer'), div = document.createElement('div'), height;
+                if (footer.length) {
+                    div.text = "&nbsp;";
+                    height = footer[0].clientHeight;
+                    if (angular.isDefined(attrs.offset) && !isNaN(parseFloat(attrs.offset))) {
+                        height += parseFloat(attrs.offset);
+                    }
+                    div.setAttribute('style', 'height: ' + height + 'px');
+                    ele.children().append(div);
                 }
-                div.setAttribute('style', 'height: ' + height + 'px');
-                ele.children().append(div);
                 var scroll = leafScroll.init(ele[0], {
                     click: true
                 });

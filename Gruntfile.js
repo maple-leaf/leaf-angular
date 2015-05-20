@@ -69,7 +69,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'scss',
-                    src: ['*.scss'],
+                    src: ['*.scss', 'leaf/leaf.scss'],
                     dest: 'www/css',
                     ext: '.css',
                 }]
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'scss',
-                    src: ['*.scss'],
+                    src: ['*.scss', 'leaf/leaf.scss'],
                     dest: 'www/css',
                     ext: '.min.css',
                 }]
