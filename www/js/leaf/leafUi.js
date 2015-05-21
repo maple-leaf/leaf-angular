@@ -1,4 +1,4 @@
-(function(IScroll, window) {
+(function(IScroll, Swiper, window) {
     var leafUi = angular.module('leafUi', []);
 
     /**
@@ -543,4 +543,62 @@
             }
         };
     });
-})(IScroll, window);
+
+    leafUi.directive('leafSlider', function($timeout) {
+        var tpl = "<div class='swiper-wrapper' ng-transclude></div>";
+        return {
+            template: tpl,
+            restrict: 'E',
+            transclude: true,
+            link: function(scope, ele, attrs) {
+                var swiper;
+                ele.attr('class', 'swiper-container');
+                angular.forEach(ele.children().children(), function(child) {
+                    angular.element(child).wrap('<div class="swiper-slide"></div>');
+                });
+                swiper = new Swiper(ele[0], {
+                    autoplay: 1000,
+                    speed: 400,
+                    spaceBetween: 100
+                });
+            }
+        };
+    });
+
+    leafUi.factory('leafSlider', function($timeout, $q) {
+        return {
+            getSlider: function(id) {
+                var deferred = $q.defer(), ele;
+                $timeout(function() {
+                    ele = id ? document.getElementById(id) : document.getElementsByTagName('leaf-slider')[0];
+                    deferred.resolve(angular.extend(ele.swiper, {
+                        resume: function() {
+                            // manully autoplay the swiper
+                            // when swiper is in the hidden tab, autoplay will not work. This can be useful.
+                            this.stopAutoplay();
+                            this.startAutoplay();
+                        }
+                    }));
+                });
+                return deferred.promise;
+            },
+            getSliders: function() {
+                var deferred = $q.defer(), swipers = [];
+                $timeout(function() {
+                    angular.forEach(document.getElementsByTagName('leaf-slider'), function(slider) {
+                        swipers.push(angular.extend(slider.swiper, {
+                            resume: function() {
+                                // manully resume autoplay the swiper
+                                // when swiper is in the hidden tab, autoplay will not work. This can be useful.
+                                this.stopAutoplay();
+                                this.startAutoplay();
+                            }
+                        }));
+                    });
+                    deferred.resolve(swipers);
+                });
+                return deferred.promise;
+            }
+        };
+    });
+})(IScroll, Swiper, window);

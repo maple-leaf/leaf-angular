@@ -1,6 +1,6 @@
 var ptwx = angular.module('ptwx', ['leaf']);
 
-ptwx.controller('homeCtrl', function($scope, leafActionSheet) {
+ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider) {
     $scope.sampleOptions = [
         {
             text: "option A",
@@ -38,4 +38,8 @@ ptwx.controller('homeCtrl', function($scope, leafActionSheet) {
     $scope.showActions = function() {
         leafActionSheet.init();
     };
+
+    leafSlider.getSliders().then(function(slider) {
+        $scope.slider = slider;
+    });
 });

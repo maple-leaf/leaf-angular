@@ -53,7 +53,14 @@ module.exports = function(grunt) {
         },
         concat: {
             leaf: {
-                src: ['www/js/leaf/intro.js', 'www/js/vendors/angular.min.js', 'www/js/vendors/iscroll-min.js', 'www/js/leaf/leafUi.js', 'www/js/leaf/leafUltis.js', 'www/js/leaf/leaf.js', 'www/js/leaf/outro.js'],
+                src: ['www/js/leaf/intro.js',
+                     'www/js/vendors/angular.min.js',
+                     'www/js/vendors/iscroll-min.js',
+                     'www/js/vendors/swiper.min.js',
+                     'www/js/leaf/leafUi.js',
+                     'www/js/leaf/leafUltis.js',
+                     'www/js/leaf/leaf.js',
+                     'www/js/leaf/outro.js'],
                 dest: 'www/js/leaf.js',
             }
         },
