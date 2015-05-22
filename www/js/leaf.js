@@ -463,7 +463,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 $rootScope.$refresh = scope.$refresh = function() {
                     // not always work properly after removed
                     //div.remove();
-                    scroll.refresh();
+                    $timeout(function() {
+                        scroll.refresh();
+                    });
                 };
             }
         };
