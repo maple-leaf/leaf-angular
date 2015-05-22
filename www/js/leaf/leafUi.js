@@ -39,8 +39,8 @@
                     hide: function() {
                         this.ele.setAttribute('style', 'display:none');
                     },
-                    show: functoin() {
-                        this.ele.setAttribute('style', 'display:none');
+                    show: function() {
+                        this.ele.setAttribute('style', 'display:table');
                     }
                 };
                 popup = function() {
@@ -250,15 +250,11 @@
             },
             controller: function($scope) {
                 $scope.$showSelect = function() {
-                    if (!$scope.optionsPopup) {
-                        $scope.optionsPopup = leafPopup.init({
-                            template: optionTpl,
-                            scope: $scope,
-                            btns: false
-                        });
-                    } else {
-                        $scope.optionsPopup.show();
-                    }
+                    $scope.optionsPopup = leafPopup.init({
+                        template: optionTpl,
+                        scope: $scope,
+                        btns: false
+                    });
                 };
                 $scope.$changeSelectValue = function(option) {
                     $scope.ngModel = option.value;
@@ -267,10 +263,11 @@
                         option.checked = false;
                     });
                     option.checked = true;
-                    $scope.optionsPopup.hide();
+                    $scope.optionsPopup.close();
                 };
             },
             link: function(scope, ele, attrs) {
+                if(attrs.ngModel) throw "ng-model must specified to leaf-select";
                 scope.selected = attrs.defaultText || "---";
                 function copyOptions() {
                     scope.copiedOptions = angular.copy(scope.options);
