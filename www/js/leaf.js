@@ -306,6 +306,12 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 proto = {
                     close: function() {
                         this.ele.remove();
+                    },
+                    hide: function() {
+                        this.ele.setAttribute('style', 'display:none');
+                    },
+                    show: functoin() {
+                        this.ele.setAttribute('style', 'display:none');
                     }
                 };
                 popup = function() {
@@ -515,11 +521,15 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
             },
             controller: function($scope) {
                 $scope.$showSelect = function() {
-                    $scope.optionsPopup = leafPopup.init({
-                        template: optionTpl,
-                        scope: $scope,
-                        btns: false
-                    });
+                    if (!$scope.optionsPopup) {
+                        $scope.optionsPopup = leafPopup.init({
+                            template: optionTpl,
+                            scope: $scope,
+                            btns: false
+                        });
+                    } else {
+                        $scope.optionsPopup.show();
+                    }
                 };
                 $scope.$changeSelectValue = function(option) {
                     $scope.ngModel = option.value;
@@ -528,7 +538,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                         option.checked = false;
                     });
                     option.checked = true;
-                    $scope.optionsPopup.close();
+                    $scope.optionsPopup.hide();
                 };
             },
             link: function(scope, ele, attrs) {
