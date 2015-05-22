@@ -432,13 +432,17 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
     });
 
     leafUi.directive('leafContent', function($rootScope, $timeout, leafScroll) {
-        var tpl = '<div class="leaf-content-wrapper" ng-transclude>'
-                + '</div>';
         return {
             restrict: 'E',
-            template: tpl,
             transclude: true,
-            link: function(scope, ele, attrs) {
+            link: function(scope, ele, attrs, ctrl, transclude) {
+                // http://angular-tips.com/blog/2014/03/transclusion-and-scopes/
+                // make content in leafContent has same scope with leafContent
+                transclude(scope, function(clone, scope) {
+                    var wrapper = angular.element('<div class="leaf-content-wrapper"></div>');
+                    wrapper.append(clone);
+                    ele.append(wrapper);
+                });
                 // add a empty block which height equal footer's height to make IScroll can reach bottom when init
                 var footer = ele.parent().find('leaf-footer'), div = document.createElement('div'), height;
                 if (footer.length) {
