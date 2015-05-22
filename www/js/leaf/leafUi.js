@@ -35,6 +35,12 @@
                 proto = {
                     close: function() {
                         this.ele.remove();
+                    },
+                    hide: function() {
+                        this.ele.setAttribute('style', 'display:none');
+                    },
+                    show: functoin() {
+                        this.ele.setAttribute('style', 'display:none');
                     }
                 };
                 popup = function() {
@@ -244,11 +250,15 @@
             },
             controller: function($scope) {
                 $scope.$showSelect = function() {
-                    $scope.optionsPopup = leafPopup.init({
-                        template: optionTpl,
-                        scope: $scope,
-                        btns: false
-                    });
+                    if (!$scope.optionsPopup) {
+                        $scope.optionsPopup = leafPopup.init({
+                            template: optionTpl,
+                            scope: $scope,
+                            btns: false
+                        });
+                    } else {
+                        $scope.optionsPopup.show();
+                    }
                 };
                 $scope.$changeSelectValue = function(option) {
                     $scope.ngModel = option.value;
@@ -257,11 +267,11 @@
                         option.checked = false;
                     });
                     option.checked = true;
-                    $scope.optionsPopup.close();
+                    $scope.optionsPopup.hide();
                 };
             },
             link: function(scope, ele, attrs) {
-                scope.selected = "---";
+                scope.selected = attrs.defaultText || "---";
                 function copyOptions() {
                     scope.copiedOptions = angular.copy(scope.options);
                     scope.copiedOptions.forEach(function(option) {

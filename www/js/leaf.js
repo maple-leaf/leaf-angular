@@ -532,7 +532,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 };
             },
             link: function(scope, ele, attrs) {
-                scope.selected = "---";
+                scope.selected = attrs.defaultText || "---";
                 function copyOptions() {
                     scope.copiedOptions = angular.copy(scope.options);
                     scope.copiedOptions.forEach(function(option) {
