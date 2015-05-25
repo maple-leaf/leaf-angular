@@ -235,11 +235,6 @@
     leafUi.directive('leafSelect', function(leafPopup, $document) {
         var tpl = "<div class='leaf-select-wrapper'>"
         +   "<div class='leaf-select-selected' ng-click='$showSelect()'>{{ selected }}</div>"
-        + "</div>",
-        optionTpl = "<div class='list'>"
-        +     "<div class='item' ng-repeat='option in copiedOptions track by $index' ng-click='$changeSelectValue(option)'>{{ option.text }}"
-        +       "<span ng-class='{\"fa fa-check\": option.checked, \"\" :!options.checked}'></span>"
-        +     "</div>"
         + "</div>";
         return {
             restrict: 'E',
@@ -250,9 +245,15 @@
             },
             controller: function($scope) {
                 $scope.$showSelect = function() {
+                    var optionTpl = "<div class='list'>"
+                        +     "<div  ng-class='{\"item checked\": option.checked, \"item\" :!options.checked}'ng-repeat='option in copiedOptions track by $index' ng-click='$changeSelectValue(option)'>{{ option.text }}"
+                        +       "<span ng-class='{\"" + $scope.checkedIconClass + "\": option.checked, \"\" :!options.checked}'></span>"
+                        +     "</div>"
+                        + "</div>";
                     $scope.optionsPopup = leafPopup.init({
                         template: optionTpl,
                         scope: $scope,
+                        className: 'leaf-select-popup',
                         btns: false
                     });
                 };
@@ -267,7 +268,8 @@
                 };
             },
             link: function(scope, ele, attrs) {
-                if(attrs.ngModel) throw "ng-model must specified to leaf-select";
+                if(!attrs.ngModel) throw "ng-model must specified to leaf-select";
+                scope.checkedIconClass = attrs.checkedIconClass || "fa fa-check";
                 scope.selected = attrs.defaultText || "---";
                 function copyOptions() {
                     scope.copiedOptions = angular.copy(scope.options);
