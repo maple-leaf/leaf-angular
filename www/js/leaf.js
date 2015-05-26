@@ -531,7 +531,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 };
                 $scope.$changeSelectValue = function(option) {
                     var oldValue, newValue;
-                    oldValue = angular.copy(oldValue, $scope.ngModel);
+                    oldValue = angular.copy($scope.ngModel, oldValue);
                     newValue = $scope.ngModel = option.value;
                     $scope.selected = option.text;
                     $scope.copiedOptions.forEach(function(option) {
