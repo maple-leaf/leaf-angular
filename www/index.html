@@ -21,7 +21,7 @@
                 </leaf-tab>
                 <leaf-tab id="formTab">
                     <form name="formDemo" id="formTab">
-                        <leaf-select options="sampleOptions" name="sampleSelect" ng-model="sampleSelect" required ng-change="testChange(o, n)"></leaf-select>
+                        <leaf-select options="{{ sampleOptions }}" name="sampleSelect" ng-model="sampleSelect" required ng-change="testChange(o, n)"></leaf-select>
                         <input type="number" ng-model="text" required min="3" max="100" placeholder="min 3, max 100">
                         <leaf-toggle ng-model="state" label="Toggle the state"></leaf-toggle>
                         <leaf-radio ng-model="sex" required>

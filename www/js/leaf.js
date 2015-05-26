@@ -511,7 +511,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
             restrict: 'E',
             template: tpl,
             scope: {
-                options: "=",
+                options: "@",
                 ngModel: "=",
                 ngChange: "&"
             },
@@ -547,7 +547,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 scope.checkedIconClass = attrs.checkedIconClass || "fa fa-check";
                 scope.selected = attrs.defaultText || "---";
                 function copyOptions() {
-                    scope.copiedOptions = angular.copy(scope.options);
+                    scope.copiedOptions = JSON.parse(scope.options);
                     scope.copiedOptions.forEach(function(option) {
                         option.checked = angular.equals(option.value, scope.ngModel);
                         if (option.checked) scope.selected = option.text;
