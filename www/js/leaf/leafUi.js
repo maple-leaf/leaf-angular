@@ -241,12 +241,13 @@
             template: tpl,
             scope: {
                 options: "=",
-                ngModel: "="
+                ngModel: "=",
+                ngChange: "&"
             },
             controller: function($scope) {
                 $scope.$showSelect = function() {
                     var optionTpl = "<div class='list'>"
-                        +     "<div  ng-class='{\"item checked\": option.checked, \"item\" :!options.checked}'ng-repeat='option in copiedOptions track by $index' ng-click='$changeSelectValue(option)'>{{ option.text }}"
+                        +     "<div  ng-class='{\"item checked\": option.checked, \"item\" :!options.checked}' ng-repeat='option in copiedOptions track by $index' ng-click='$changeSelectValue(option);'>{{ option.text }}"
                         +       "<span ng-class='{\"" + $scope.checkedIconClass + "\": option.checked, \"\" :!options.checked}'></span>"
                         +     "</div>"
                         + "</div>";
@@ -258,13 +259,16 @@
                     });
                 };
                 $scope.$changeSelectValue = function(option) {
-                    $scope.ngModel = option.value;
+                    var oldValue, newValue;
+                    oldValue = angular.copy(oldValue, $scope.ngModel);
+                    newValue = $scope.ngModel = option.value;
                     $scope.selected = option.text;
                     $scope.copiedOptions.forEach(function(option) {
                         option.checked = false;
                     });
                     option.checked = true;
                     $scope.optionsPopup.close();
+                    $scope.ngChange({'o': oldValue, 'n': newValue});
                 };
             },
             link: function(scope, ele, attrs) {

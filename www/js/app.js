@@ -42,4 +42,9 @@ ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider) {
     leafSlider.getSliders().then(function(slider) {
         $scope.slider = slider;
     });
+
+    $scope.testChange = function(o, n) {
+        console.log(o);
+        console.log(n);
+    };
 });
