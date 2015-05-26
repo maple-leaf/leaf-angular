@@ -242,7 +242,8 @@
             scope: {
                 options: "@",
                 ngModel: "=",
-                ngChange: "&"
+                ngChange: "&",
+                relateTo: "=" // TODO: why @ not working
             },
             controller: function($scope) {
                 $scope.$showSelect = function() {
@@ -268,7 +269,7 @@
                     });
                     option.checked = true;
                     $scope.optionsPopup.close();
-                    $scope.ngChange({'o': oldValue, 'n': newValue});
+                    $scope.ngChange({'newValue': newValue, 'oldValue': oldValue});
                 };
             },
             link: function(scope, ele, attrs) {
@@ -285,6 +286,12 @@
                 scope.$watch('options', function() {
                     copyOptions();
                 }, true);
+                if (!!attrs.relateTo) {
+                    scope.$watch('relateTo', function() {
+                        scope.selected = attrs.defaultText || "---";
+                        scope.ngModel = null;
+                    });
+                }
                 copyOptions();
             }
         };
