@@ -179,14 +179,16 @@
                     ele.append(wrapper);
                 });
                 // add a empty block which height equal footer's height to make IScroll can reach bottom when init
-                var footer = ele.parent().find('leaf-footer'), div = document.createElement('div'), height;
+                var footer = ele.parent().find('leaf-footer'), div = document.createElement('div'), height, rootRem;
+                rootRem = parseFloat(getComputedStyle(document.getElementsByTagName('html')[0]).fontSize.replace('px', ''));
                 if (footer.length) {
                     div.text = "&nbsp;";
                     height = footer[0].clientHeight;
                     if (angular.isDefined(attrs.offset) && !isNaN(parseFloat(attrs.offset))) {
                         height += parseFloat(attrs.offset);
                     }
-                    div.setAttribute('style', 'height: ' + height + 'px');
+                    height = height / rootRem;
+                    div.setAttribute('style', 'height: ' + height + 'rem');
                     ele.children().append(div);
                 }
                 var scroll = leafScroll.init(ele[0], {
