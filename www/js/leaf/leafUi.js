@@ -185,7 +185,11 @@
                     div.text = "&nbsp;";
                     height = footer[0].clientHeight;
                     if (angular.isDefined(attrs.offset) && !isNaN(parseFloat(attrs.offset))) {
-                        height += parseFloat(attrs.offset);
+                        if (attrs.offset.indexOf('rem') !== -1) {
+                            height += (parseFloat(attrs.offset.replace('rem', '')) * rootRem);
+                        } else {
+                            height += parseFloat(attrs.offset.replace('px', ''));
+                        }
                     }
                     height = height / rootRem;
                     div.setAttribute('style', 'height: ' + height + 'rem');
