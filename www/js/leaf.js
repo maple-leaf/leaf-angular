@@ -1,3 +1,18 @@
+/**
+ * leaf-angular
+ * A ui framework based on angularjs
+ *
+ * http://maple-leaf.github.io/leaf-angular
+ *
+ * Copyright 2015, maple-leaf
+ *
+ * Email: tjfdfs@gmail.com/tangjf.88@163.com
+ *
+ * Licensed under MIT
+ *
+ * Released on:
+ */
+
 /*
  AngularJS v1.3.15
  (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -853,10 +868,12 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 angular.forEach(ele.children().children(), function(child) {
                     angular.element(child).wrap('<div class="swiper-slide"></div>');
                 });
+                ele.append('<div class="swiper-pagination"></div>');
                 swiper = new Swiper(ele[0], {
                     autoplay: 1000,
                     speed: 400,
-                    spaceBetween: 100
+                    spaceBetween: 100,
+                    pagination: '.swiper-pagination'
                 });
             }
         };

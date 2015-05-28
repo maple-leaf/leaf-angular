@@ -582,10 +582,12 @@
                 angular.forEach(ele.children().children(), function(child) {
                     angular.element(child).wrap('<div class="swiper-slide"></div>');
                 });
+                ele.append('<div class="swiper-pagination"></div>');
                 swiper = new Swiper(ele[0], {
                     autoplay: 1000,
                     speed: 400,
-                    spaceBetween: 100
+                    spaceBetween: 100,
+                    pagination: '.swiper-pagination'
                 });
             }
         };

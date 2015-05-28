@@ -3930,22 +3930,24 @@ leaf-header {
   top: 0;
   height: 60px;
   width: 100%;
+  z-index: 9999;
 }
 
-/* line 87, ../../../scss/leaf/_main.scss */
+/* line 88, ../../../scss/leaf/_main.scss */
 leaf-footer {
   position: absolute;
   bottom: 0;
   height: 60px;
   width: 100%;
+  z-index: 9999;
 }
 
-/* line 94, ../../../scss/leaf/_main.scss */
+/* line 96, ../../../scss/leaf/_main.scss */
 .leaf-content-wrapper {
   min-height: 100%;
 }
 
-/* line 98, ../../../scss/leaf/_main.scss */
+/* line 100, ../../../scss/leaf/_main.scss */
 leaf-slider {
   display: block;
 }
