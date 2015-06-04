@@ -4,7 +4,8 @@ module.exports = function(grunt) {
     require('grunt-task-loader')(grunt, {
         /* see issue https://github.com/yleo77/grunt-task-loader/issues/1 */
         mapping: {
-            cachebreaker: 'grunt-cache-breaker'
+            cachebreaker: 'grunt-cache-breaker',
+            ngAnnotate: 'grunt-ng-annotate'
         }
     });
 
@@ -64,6 +65,24 @@ module.exports = function(grunt) {
                 dest: 'www/js/leaf.js',
             }
         },
+        ngAnnotate: {
+            options: {
+                singleQuotes: true
+            },
+            leaf: {
+                files: {
+                    'www/js/leaf.annotated.js': ['www/js/leaf.js']
+                }
+            }
+        },
+        uglify: {
+            options: {},
+            leaf: {
+                files: {
+                    'www/js/leaf.min.js': ['www/js/leaf.annotated.js']
+                }
+            }
+        },
         copy: {
         },
         sass: {
@@ -100,4 +119,5 @@ module.exports = function(grunt) {
 
     // grunt task registration
     grunt.registerTask('default', ['clean', 'connect:dev', 'sass:dev', 'sass:publish', 'concat:leaf', 'watch']);
+    grunt.registerTask('publish', ['sass:publish', 'ngAnnotate', 'uglify']);
 };
