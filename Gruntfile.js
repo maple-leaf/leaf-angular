@@ -56,7 +56,7 @@ module.exports = function(grunt) {
             leaf: {
                 src: ['www/js/leaf/intro.js',
                      'www/js/vendors/angular.min.js',
-                     'www/js/vendors/iscroll-min.js',
+                     'www/js/vendors/iscroll-probe.js',
                      'www/js/vendors/swiper.min.js',
                      'www/js/leaf/leafUi.js',
                      'www/js/leaf/leafUltis.js',
@@ -115,9 +115,14 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        apimocker: {
+            options: {
+                configFile: 'mocker.json'
+            }
+        }
     });
 
     // grunt task registration
-    grunt.registerTask('default', ['clean', 'connect:dev', 'sass:dev', 'sass:publish', 'concat:leaf', 'watch']);
+    grunt.registerTask('default', ['apimocker', 'clean', 'connect:dev', 'sass:dev', 'sass:publish', 'concat:leaf', 'watch']);
     grunt.registerTask('publish', ['sass:publish', 'ngAnnotate', 'uglify']);
 };
