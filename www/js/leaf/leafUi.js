@@ -529,8 +529,11 @@
             link: function(scope, ele, attrs) {
                 if (!attrs.hasOwnProperty('current')) {
                     ele.addClass('ng-hide');
+                } else {
+                    scope.$currentTab = '#' + attrs.id;
                 }
                 scope.$on('tabSwitching', function(e, tab) {
+                    scope.$currentTab = tab;
                     if (angular.equals('#' + attrs.id, tab)) {
                         ele.removeClass('ng-hide');
                     } else {
@@ -547,10 +550,13 @@
             restrict: 'E',
             link: function(scope, ele, attrs) {
                 var switchedTab = 0, tabs = ele.children().length;
+                ele.children()[0].classList.add('current');
                 function bindClick() {
                     switchedTab = 0;
                     angular.forEach(ele.children(), function(nav) {
                         nav.onclick = function() {
+                            nav.parentElement.querySelector('.current').classList.remove('current');
+                            nav.classList.add('current');
                             var target = this.getAttribute('href') || this.getAttribute('data-href');
                             $rootScope.$broadcast('tabSwitching', target);
                             unBindClick();
@@ -563,6 +569,7 @@
                 scope.$on('tabSwitched', function() {
                     switchedTab++;
                     if (switchedTab === tabs) {
+                        // when tabSwitching looping of leafTab done
                         bindClick();
                         $rootScope.$refresh();
                     }
