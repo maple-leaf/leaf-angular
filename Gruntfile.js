@@ -124,5 +124,5 @@ module.exports = function(grunt) {
 
     // grunt task registration
     grunt.registerTask('default', ['apimocker', 'clean', 'connect:dev', 'sass:dev', 'sass:publish', 'concat:leaf', 'watch']);
-    grunt.registerTask('publish', ['sass:publish', 'ngAnnotate', 'uglify']);
+    grunt.registerTask('publish', ['sass:publish', 'concat:leaf', 'ngAnnotate', 'uglify']);
 };
