@@ -2521,6 +2521,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                     probeType: 3,
                     click: true
                 });
+                $rootScope.$contentScroll = scope.$scroll = scroll;
                 $timeout(function() {
                     scroll.refresh();
                 }, 30);
@@ -2894,6 +2895,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                         // when tabSwitching looping of leafTab done
                         bindClick();
                         $rootScope.$refresh();
+                        $rootScope.$contentScroll.scrollTo(0, 0);
                     }
                 });
                 bindClick();
