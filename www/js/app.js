@@ -1,6 +1,6 @@
 var ptwx = angular.module('ptwx', ['leaf']);
 
-ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider) {
+ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, $http) {
     $scope.sampleOptions = [
         {
             text: "option A",
@@ -47,4 +47,22 @@ ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider) {
         console.log(o);
         console.log(n);
     };
+
+        $http.get('http://localhost:7878/test').success(function(data) {
+            $scope.test = data;
+            $scope.$refresh();
+        })
+        .error(function(data) {
+            console.error(data);
+        });
+    $scope.load = function(cb) {
+        $http.get('http://localhost:7878/test').success(function(data) {
+            $scope.test = $scope.test.concat(data);
+            $scope.$refresh();
+            cb();
+        })
+        .error(function(data) {
+            console.error(data);
+        });
+    }
 });

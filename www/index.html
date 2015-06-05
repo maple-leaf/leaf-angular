@@ -12,7 +12,7 @@
     <body ng-app="ptwx">
         <leaf-wrapper ng-controller="homeCtrl">
             <leaf-header><div leaf-sidebar-toggle>Leaf-angular</div></leaf-header>
-            <leaf-content>
+            <leaf-content pull-load='{"load": "load", "distance": 80, "pullText": "上拉刷新", "releaseText": "松开立即刷新"}'>
                 <leaf-tab id="homeTab" current>
                     <p ng-click="showActions()">
                         Author: maple-leaf,
@@ -49,7 +49,10 @@
                         <div>slider 2</div>
                         <div>slider 3</div>
                     </leaf-slider>
-                </div>
+                </leaf-tab>
+                <leaf-tab id="infiniteTab">
+                    <div ng-repeat="t in test">{{ t.country }}</div>
+                </leaf-tab>
             </leaf-content>
             <leaf-sidebar>
                 <div>xxx</div>
@@ -64,6 +67,7 @@
                     <a href="#homeTab">Home</a>
                     <a href="#formTab">Form</a>
                     <a href="#sliderTab">Slider</a>
+                    <a href="#infiniteTab">Infinite</a>
                 </leaf-tabs-nav>
             </leaf-footer>
         </leaf-wrapper>

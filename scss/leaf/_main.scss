@@ -95,6 +95,55 @@ leaf-footer {
 
 .leaf-content-wrapper {
     min-height: 100%;
+    .leaf-load-more {
+        position: absolute;
+        bottom: -20px;
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+        width: 100%;
+        .release-load-text {
+            display: none;
+        }
+        &.ready-to-load {
+            .release-load-text {
+                display: inline;
+            }
+            .pull-load-text {
+                display: none;
+            }
+            .fa-arrow-up {
+                -webkit-transform: rotate(180deg);
+                -webkit-transition: -webkit-transform .2s linear;
+                transform: rotate(180deg);
+                transition: transform .2s linear;
+            }
+        }
+        span {
+            vertical-align: middle;
+        }
+        .fa-arrow-up {
+            margin-right: 10px;
+            -webkit-transition: -webkit-transform .2s linear;
+            transition: transform .2s linear;
+        }
+        .leaf-loading-icon {
+            display: none;
+            position: relative;
+            top: -20px;
+        }
+        &.start-loading {
+            .leaf-loading-icon {
+                display: inline-block;
+            }
+            span {
+                display: none;
+            }
+            .release-load-text {
+                display: none;
+            }
+        }
+    }
 }
 
 leaf-slider {

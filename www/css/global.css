@@ -3946,8 +3946,64 @@ leaf-footer {
 .leaf-content-wrapper {
   min-height: 100%;
 }
+/* line 98, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more {
+  position: absolute;
+  bottom: -20px;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  width: 100%;
+}
+/* line 105, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more .release-load-text {
+  display: none;
+}
+/* line 109, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more.ready-to-load .release-load-text {
+  display: inline;
+}
+/* line 112, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more.ready-to-load .pull-load-text {
+  display: none;
+}
+/* line 115, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more.ready-to-load .fa-arrow-up {
+  -webkit-transform: rotate(180deg);
+  -webkit-transition: -webkit-transform .2s linear;
+  transform: rotate(180deg);
+  transition: transform .2s linear;
+}
+/* line 122, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more span {
+  vertical-align: middle;
+}
+/* line 125, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more .fa-arrow-up {
+  margin-right: 10px;
+  -webkit-transition: -webkit-transform .2s linear;
+  transition: transform .2s linear;
+}
+/* line 130, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more .leaf-loading-icon {
+  display: none;
+  position: relative;
+  top: -20px;
+}
+/* line 136, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more.start-loading .leaf-loading-icon {
+  display: inline-block;
+}
+/* line 139, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more.start-loading span {
+  display: none;
+}
+/* line 142, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more.start-loading .release-load-text {
+  display: none;
+}
 
-/* line 100, ../../scss/leaf/_main.scss */
+/* line 149, ../../scss/leaf/_main.scss */
 leaf-slider {
   display: block;
 }

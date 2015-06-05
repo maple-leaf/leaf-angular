@@ -179,7 +179,7 @@
                     ele.append(wrapper);
                 });
                 // add a empty block which height equal footer's height to make IScroll can reach bottom when init
-                var footer = ele.parent().find('leaf-footer'), div = document.createElement('div'), height, rootRem;
+                var footer = ele.parent().find('leaf-footer'), div = document.createElement('div'), height, rootRem, loadMoreHtml, exceedHeight, loadingIcon, pullLoadOptions = {}, distance = -40;
                 rootRem = parseFloat(getComputedStyle(document.getElementsByTagName('html')[0]).fontSize.replace('px', ''));
                 if (footer.length) {
                     div.text = "&nbsp;";
@@ -196,16 +196,60 @@
                     ele.children().append(div);
                 }
                 var scroll = leafScroll.init(ele[0], {
+                    probeType: 3,
                     click: true
                 });
                 $timeout(function() {
                     scroll.refresh();
                 }, 30);
+                if(angular.isDefined(attrs.pullLoad)) {
+                    /*
+                     * attrs.pullLoad = {
+                     *      pullText,
+                     *      releaseText,
+                     *      distance,
+                     *      load
+                     * }
+                     */
+                    if (attrs.pullLoad !== "") {
+                        pullLoadOptions = JSON.parse(attrs.pullLoad);
+                    }
+                    loadingIcon = '<svg version="1.1" class="leaf-loading-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve"> <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"/> <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z"> <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="1s" repeatCount="indefinite"/> </path> </svg>';
+                    exceedHeight = ele.children()[0].clientHeight - ele[0].clientHeight;
+                    loadMoreHtml = document.createElement('div');
+                    loadMoreHtml.innerHTML = loadingIcon + "<span class='fa fa-arrow-up'></span><span class='pull-load-text'>" + (pullLoadOptions.pullText || "Pull up to load more") + "</span><span class='release-load-text'>" + (pullLoadOptions.releaseText || "Release to load more") + "</span>";
+                    loadMoreHtml.setAttribute('class', 'leaf-load-more');
+                    if (angular.isNumber(pullLoadOptions.distance)) {
+                        distance = -(pullLoadOptions.distance);
+                        loadMoreHtml.setAttribute('style', 'bottom:' + (distance / 2) + 'px');
+                        loadMoreHtml.children[0].setAttribute('style', 'top:' + (distance / 2) + 'px');
+                    }
+                    ele.children().append(loadMoreHtml);
+                    scroll.on('scroll', function() {
+                        if ((exceedHeight + this.y) < distance) {
+                            loadMoreHtml.classList.add('ready-to-load');
+                        } else {
+                            loadMoreHtml.classList.remove('ready-to-load');
+                        }
+                    });
+                    ele.bind('touchend', function() {
+                        if (loadMoreHtml.classList.contains('ready-to-load')) {
+                            loadMoreHtml.classList.add('start-loading');
+                            scope[pullLoadOptions.load].call(ele, function() {
+                                loadMoreHtml.classList.remove('ready-to-load');
+                                loadMoreHtml.classList.remove('start-loading');
+                            });
+                        }
+                    });
+                }
                 $rootScope.$refresh = scope.$refresh = function() {
                     // not always work properly after removed
                     //div.remove();
                     $timeout(function() {
                         scroll.refresh();
+                        if(angular.isDefined(attrs.pullLoad)) {
+                            exceedHeight = ele.children()[0].clientHeight - ele[0].clientHeight;
+                        }
                     });
                 };
             }
