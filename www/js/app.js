@@ -58,7 +58,6 @@ ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, $http)
     $scope.load = function(cb) {
         $http.get('http://localhost:7878/test').success(function(data) {
             $scope.test = $scope.test.concat(data);
-            $scope.$refresh();
             cb();
         })
         .error(function(data) {

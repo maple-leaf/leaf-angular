@@ -234,10 +234,14 @@
                     });
                     ele.bind('touchend', function() {
                         if (loadMoreHtml.classList.contains('ready-to-load')) {
+                            loadMoreHtml.classList.remove('ready-to-load');
                             loadMoreHtml.classList.add('start-loading');
                             scope[pullLoadOptions.load].call(ele, function() {
-                                loadMoreHtml.classList.remove('ready-to-load');
                                 loadMoreHtml.classList.remove('start-loading');
+                                $timeout(function() {
+                                    scroll.refresh();
+                                    exceedHeight = ele.children()[0].clientHeight - ele[0].clientHeight;
+                                });
                             });
                         }
                     });
