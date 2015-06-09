@@ -315,7 +315,7 @@ var utils = (function () {
 	};
 
 	me.prefixPointerEvent = function (pointerEvent) {
-		return window.MSPointerEvent ?
+		return window.MSPointerEvent ? 
 			'MSPointer' + pointerEvent.charAt(9).toUpperCase() + pointerEvent.substr(10):
 			pointerEvent;
 	};
@@ -525,7 +525,7 @@ function IScroll (el, options) {
 
 		snapThreshold: 0.334,
 
-// INSERT POINT: OPTIONS
+// INSERT POINT: OPTIONS 
 
 		startX: 0,
 		startY: 0,
@@ -585,7 +585,7 @@ function IScroll (el, options) {
 
 // INSERT POINT: NORMALIZATION
 
-	// Some defaults
+	// Some defaults	
 	this.x = 0;
 	this.y = 0;
 	this.directionX = 0;
@@ -1786,7 +1786,7 @@ IScroll.prototype = {
 			if ( now >= destTime ) {
 				that.isAnimating = false;
 				that._translate(destX, destY);
-
+				
 				if ( !that.resetPosition(that.options.bounceTime) ) {
 					that._execEvent('scrollEnd');
 				}
@@ -2169,7 +2169,7 @@ Indicator.prototype = {
 				this.maxBoundaryX = this.maxPosX;
 			}
 
-			this.sizeRatioX = this.options.speedRatioX || (this.scroller.maxScrollX && (this.maxPosX / this.scroller.maxScrollX));
+			this.sizeRatioX = this.options.speedRatioX || (this.scroller.maxScrollX && (this.maxPosX / this.scroller.maxScrollX));	
 		}
 
 		if ( this.options.listenY ) {
@@ -2303,7 +2303,6 @@ if ( typeof module != 'undefined' && module.exports ) {
 }
 
 })(window, document, Math);
-
 /**
  * Swiper 3.0.7
  * Most modern mobile touch slider and framework with hardware accelerated transitions
