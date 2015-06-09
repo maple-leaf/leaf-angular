@@ -254,8 +254,8 @@
                 });
                 $rootScope.$contentScroll = scope.$leafContent.scroll = scroll;
                 $timeout(function() {
-                    scroll.refresh();
-                }, 30);
+                    scope.$leafContent.scroll.refresh();
+                }, 500);
                 if(angular.isDefined(attrs.pullLoad)) {
                     /*
                      * attrs.pullLoad = {
