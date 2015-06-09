@@ -4008,6 +4008,20 @@ leaf-slider {
   display: block;
 }
 
+/* line 153, ../../../scss/leaf/_main.scss */
+leaf-scroll {
+  display: block;
+  overflow: hidden;
+}
+/* line 156, ../../../scss/leaf/_main.scss */
+leaf-scroll.leaf-scroll-horizontal {
+  white-space: nowrap;
+}
+/* line 158, ../../../scss/leaf/_main.scss */
+leaf-scroll.leaf-scroll-horizontal .leaf-scroll-wrapper {
+  display: inline-block;
+}
+
 /* Sidebar */
 /* Form */
 /* ActionSheet */

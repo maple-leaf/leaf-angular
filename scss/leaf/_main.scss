@@ -149,3 +149,14 @@ leaf-footer {
 leaf-slider {
     display: block;
 }
+
+leaf-scroll {
+    display: block;
+    overflow: hidden;
+    &.leaf-scroll-horizontal {
+        white-space: nowrap;
+        .leaf-scroll-wrapper {
+            display: inline-block;
+        }
+    }
+}

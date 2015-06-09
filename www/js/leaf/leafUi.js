@@ -154,14 +154,59 @@
         };
     });
 
-    leafUi.factory('leafScroll', function($document) {
+    leafUi.factory('leafScroll', function() {
+        var scrolls = {};
         return {
             init: function(ele, options) {
-                var _defaultOptions, _options;
-                _defaultOptions = { };
+                var _defaultOptions, _options, scroll, id;
+                _defaultOptions = {};
                 _options = angular.extend(_defaultOptions, options || {});
+                id = _options.id || ('leafScroll' + Date.now() + parseInt(Math.random() * 1000, 10));
 
-                return new IScroll(ele, _options);
+                if (!scrolls.hasOwnProperty(id)) {
+                    scroll = new IScroll(ele, _options);
+                    scrolls[id] = scroll;
+                } else {
+                    throw 'The scroller with id ' + id + 'is already exist';
+                }
+
+                return scroll;
+            },
+            get: function(id) {
+                return scrolls[id];
+            }
+        };
+    });
+
+    leafUi.directive('leafScroll', function($timeout, leafScroll) {
+        return {
+            restrict: 'E',
+            transclude: true,
+            link: function(scope, ele, attrs, ctrl, transclude) {
+                var options, wrapper;
+                // http://angular-tips.com/blog/2014/03/transclusion-and-scopes/
+                // make content in leafContent has same scope with leafContent
+                transclude(scope, function(clone, scope) {
+                    var wrapper = angular.element('<div class="leaf-scroll-wrapper"></div>');
+                    wrapper.append(clone);
+                    ele.append(wrapper);
+                });
+                options = {
+                    id: attrs.id,
+                    click: true,
+                };
+                if (angular.isDefined(attrs.horizontal)) {
+                    ele.addClass('leaf-scroll-horizontal');
+                    wrapper = ele.children()[0];
+                    wrapper.setAttribute('style', 'width:' + wrapper.clientWidth + 'px');
+                    options.scrollY = false;
+                    options.scrollX = true;
+                }
+                var scroll = leafScroll.init(ele[0], options);
+                scroll.on('beforeScrollStart', function() {
+                    // disable leafContentScroll when scroll inner scroller
+                    leafScroll.get('leafContentScroll').disable();
+                });
             }
         };
     });
@@ -196,8 +241,15 @@
                     ele.children().append(div);
                 }
                 var scroll = leafScroll.init(ele[0], {
+                    id: 'leafContentScroll',
                     probeType: 3,
                     click: true
+                });
+                ele.bind('touchstart', function() {
+                    // when has a nested iscroll, reenable outer scroll when touch
+                    if (!scroll.enabled) {
+                        scroll.enable();
+                    }
                 });
                 $rootScope.$contentScroll = scope.$scroll = scroll;
                 $timeout(function() {

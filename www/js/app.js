@@ -1,6 +1,6 @@
 var ptwx = angular.module('ptwx', ['leaf']);
 
-ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, $http) {
+ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, leafScroll, $http) {
     $scope.sampleOptions = [
         {
             text: "option A",
@@ -63,5 +63,6 @@ ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, $http)
         .error(function(data) {
             console.error(data);
         });
-    }
+    };
+    $scope.leafScroll = leafScroll;
 });
