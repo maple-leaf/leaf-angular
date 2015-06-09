@@ -102,6 +102,9 @@ leaf-footer {
         font-size: 12px;
         color: #666;
         width: 100%;
+        &.disabled {
+            display: none;
+        }
         .release-load-text {
             display: none;
         }

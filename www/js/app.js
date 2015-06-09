@@ -48,13 +48,13 @@ ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, leafSc
         console.log(n);
     };
 
-        $http.get('http://localhost:7878/test').success(function(data) {
-            $scope.test = data;
-            $scope.$refresh();
-        })
-        .error(function(data) {
-            console.error(data);
-        });
+    $http.get('http://localhost:7878/test').success(function(data) {
+        $scope.test = data;
+        $scope.$refresh();
+    })
+    .error(function(data) {
+        console.error(data);
+    });
     $scope.load = function(cb) {
         $http.get('http://localhost:7878/test').success(function(data) {
             $scope.test = $scope.test.concat(data);
@@ -64,5 +64,12 @@ ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, leafSc
             console.error(data);
         });
     };
-    $scope.leafScroll = leafScroll;
+    $scope.$onLeafTabSwitched = function() {
+        console.log($scope.$currentTab);
+        if ($scope.$currentTab === "#infiniteTab") {
+            $scope.$leafContent.pullLoad.enable();
+        } else {
+            $scope.$leafContent.pullLoad.disable();
+        }
+    };
 });

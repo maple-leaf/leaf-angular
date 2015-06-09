@@ -2507,7 +2507,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
             link: function(scope, ele, attrs, ctrl, transclude) {
                 var options, wrapper;
                 // http://angular-tips.com/blog/2014/03/transclusion-and-scopes/
-                // make content in leafContent has same scope with leafContent
+                // make content in leafScroll has same scope with leafScroll
                 transclude(scope, function(clone, scope) {
                     var wrapper = angular.element('<div class="leaf-scroll-wrapper"></div>');
                     wrapper.append(clone);
@@ -2567,13 +2567,14 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                     probeType: 3,
                     click: true
                 });
+                scope.$leafContent = {};
                 ele.bind('touchstart', function() {
                     // when has a nested iscroll, reenable outer scroll when touch
                     if (!scroll.enabled) {
                         scroll.enable();
                     }
                 });
-                $rootScope.$contentScroll = scope.$scroll = scroll;
+                $rootScope.$contentScroll = scope.$leafContent.scroll = scroll;
                 $timeout(function() {
                     scroll.refresh();
                 }, 30);
@@ -2599,11 +2600,24 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                         loadMoreHtml.children[0].setAttribute('style', 'top:' + (distance / 2) + 'px');
                     }
                     ele.children().append(loadMoreHtml);
+                    scope.$leafContent.pullLoad = {
+                        enabled: true,
+                        disable: function() {
+                            this.enabled = false;
+                            loadMoreHtml.classList.add('disabled');
+                        },
+                        enable: function() {
+                            this.enabled = true;
+                            loadMoreHtml.classList.remove('disabled');
+                        }
+                    };
                     scroll.on('scroll', function() {
-                        if ((exceedHeight + this.y) < distance) {
-                            loadMoreHtml.classList.add('ready-to-load');
-                        } else {
-                            loadMoreHtml.classList.remove('ready-to-load');
+                        if (scope.$leafContent.pullLoad.enabled) {
+                            if ((exceedHeight + this.y) < distance) {
+                                loadMoreHtml.classList.add('ready-to-load');
+                            } else {
+                                loadMoreHtml.classList.remove('ready-to-load');
+                            }
                         }
                     });
                     ele.bind('touchend', function() {
@@ -2623,7 +2637,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                         exceedHeight = ele.children()[0].clientHeight - ele[0].clientHeight;
                     });
                 }
-                $rootScope.$refresh = scope.$refresh = function() {
+                $rootScope.$refresh = scope.$leafContent.refresh = function() {
                     // not always work properly after removed
                     //div.remove();
                     $timeout(function() {
@@ -2948,6 +2962,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                         bindClick();
                         $rootScope.$refresh();
                         $rootScope.$contentScroll.scrollTo(0, 0);
+                        scope.$onLeafTabSwitched && scope.$onLeafTabSwitched();
                     }
                 });
                 bindClick();

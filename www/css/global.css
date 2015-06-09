@@ -3956,68 +3956,72 @@ leaf-footer {
   width: 100%;
 }
 /* line 105, ../../scss/leaf/_main.scss */
+.leaf-content-wrapper .leaf-load-more.disabled {
+  display: none;
+}
+/* line 108, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper .leaf-load-more .release-load-text {
   display: none;
 }
-/* line 109, ../../scss/leaf/_main.scss */
+/* line 112, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper .leaf-load-more.ready-to-load .release-load-text {
   display: inline;
 }
-/* line 112, ../../scss/leaf/_main.scss */
+/* line 115, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper .leaf-load-more.ready-to-load .pull-load-text {
   display: none;
 }
-/* line 115, ../../scss/leaf/_main.scss */
+/* line 118, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper .leaf-load-more.ready-to-load .fa-arrow-up {
   -webkit-transform: rotate(180deg);
   -webkit-transition: -webkit-transform .2s linear;
   transform: rotate(180deg);
   transition: transform .2s linear;
 }
-/* line 122, ../../scss/leaf/_main.scss */
+/* line 125, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper .leaf-load-more span {
   vertical-align: middle;
 }
-/* line 125, ../../scss/leaf/_main.scss */
+/* line 128, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper .leaf-load-more .fa-arrow-up {
   margin-right: 10px;
   -webkit-transition: -webkit-transform .2s linear;
   transition: transform .2s linear;
 }
-/* line 130, ../../scss/leaf/_main.scss */
+/* line 133, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper .leaf-load-more .leaf-loading-icon {
   display: none;
   position: relative;
   top: -20px;
 }
-/* line 136, ../../scss/leaf/_main.scss */
+/* line 139, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper .leaf-load-more.start-loading .leaf-loading-icon {
   display: inline-block;
 }
-/* line 139, ../../scss/leaf/_main.scss */
+/* line 142, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper .leaf-load-more.start-loading span {
   display: none;
 }
-/* line 142, ../../scss/leaf/_main.scss */
+/* line 145, ../../scss/leaf/_main.scss */
 .leaf-content-wrapper .leaf-load-more.start-loading .release-load-text {
   display: none;
 }
 
-/* line 149, ../../scss/leaf/_main.scss */
+/* line 152, ../../scss/leaf/_main.scss */
 leaf-slider {
   display: block;
 }
 
-/* line 153, ../../scss/leaf/_main.scss */
+/* line 156, ../../scss/leaf/_main.scss */
 leaf-scroll {
   display: block;
   overflow: hidden;
 }
-/* line 156, ../../scss/leaf/_main.scss */
+/* line 159, ../../scss/leaf/_main.scss */
 leaf-scroll.leaf-scroll-horizontal {
   white-space: nowrap;
 }
-/* line 158, ../../scss/leaf/_main.scss */
+/* line 161, ../../scss/leaf/_main.scss */
 leaf-scroll.leaf-scroll-horizontal .leaf-scroll-wrapper {
   display: inline-block;
 }
