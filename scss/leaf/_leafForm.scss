@@ -69,7 +69,7 @@ input[type=number] {
     }
 }
 
-leaf-select, leaf-radio, leaf-checkbox, leaf-toggle {
+leaf-select, leaf-radio, leaf-checkbox, leaf-toggle, leaf-datepicker {
     display: block;
 }
 
@@ -154,5 +154,28 @@ leaf-select, leaf-radio, leaf-checkbox, leaf-toggle {
     }
     .checkbox-text {
         vertical-align: middle;
+    }
+}
+
+.leaf-datepicker-popup {
+    .leaf-popup-content {
+        @include clearfix;
+        text-align: center;
+        padding: 0 2%;
+    }
+    .list {
+        height: 390px;
+        width: 16%;
+        float: left;
+    }
+    .text {
+        line-height: 390px;;
+        text-transform: capitalize;
+    }
+    .item {
+        line-height: 78px;
+    }
+    .picked {
+        color: #3fab6d;
     }
 }

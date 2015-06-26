@@ -2347,7 +2347,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         *
         * @return {undefined}
     */
-    leafUi.factory('leafPopup', function($document, $compile, $rootScope, $http, $q) {
+    leafUi.factory('leafPopup', function($document, $compile, $rootScope, $http, $q, $timeout) {
         return {
             init: function(options) {
                 var _defaultOptions, _options, popup, proto;
@@ -2441,7 +2441,10 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                         $document.find('leaf-wrapper').append(ele);
                         $compile(ele)(scope);
                         _this.ele = document.getElementById(id);
-                        _options.afterPopup && _options.afterPopup.call(_this, ele);
+                        _options.afterPopup && $timeout(function() {
+                            // Run in $timeout to make sure that everything done
+                            _options.afterPopup.call(_this, ele);
+                        });
                     }, function() {
                     });
                 };
@@ -2515,7 +2518,8 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 });
                 options = {
                     id: attrs.id,
-                    click: true,
+                    probeType: 3,
+                    click: true
                 };
                 if (angular.isDefined(attrs.horizontal)) {
                     ele.addClass('leaf-scroll-horizontal');
@@ -2742,6 +2746,156 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         };
     });
 
+    leafUi.directive('leafDatepicker', function(leafPopup, leafScroll, $document) {
+        var tpl = "<div class='leaf-datepicker-wrapper'>"
+        +   "<div class='leaf-datepicker-picked' ng-click='$showDatepicker()'>{{ $pickedYear }} - {{ $pickedMonth }} - {{ $pickedDay }}</div>"
+        + "</div>";
+        return {
+            restrict: 'E',
+            template: tpl,
+            scope: {
+                ngModel: "=",
+                ngChange: "&",
+            },
+            controller: function($scope) {
+                $scope.$showDatepicker = function() {
+                    var optionTpl = "<leaf-scroll class='list' id='yearScroll'>"
+                        +     "<div ng-class='{\"item picked\": year===$pickedYear, \"item\" :!options.checked}' ng-repeat='year in $years track by $index' ng-click='pickYear(year)'>{{ year }}</div>"
+                        +     "</leaf-scroll>"
+                        + "<div class='list text'>{{ $text.year }}</div>"
+                        + "<leaf-scroll class='list' id='monthScroll'>"
+                        +     "<div ng-class='{\"item picked\": month===$pickedMonth, \"item\" :!options.checked}' ng-repeat='month in $monthes track by $index' ng-click='pickMonth(month)'>{{ month }}</div>"
+                        +     "</leaf-scroll>"
+                        + "<div class='list text'>{{ $text.month }}</div>"
+                        + "<leaf-scroll class='list' id='dayScroll'>"
+                        +     "<div ng-class='{\"item picked\": day===$pickedDay, \"item\" :!options.checked}' ng-repeat='day in $days track by $index' ng-click='pickDay(day)'>{{ day }}</div>"
+                        +     "</leaf-scroll>"
+                        + "<div class='list text'>{{ $text.day }}</div>"
+                    $scope.optionsPopup = leafPopup.init({
+                        template: optionTpl,
+                        scope: $scope,
+                        className: 'leaf-datepicker-popup',
+                        btns: false,
+                        afterPopup: function(ele) {
+                            var yearScroller  = leafScroll.get('yearScroll'), monthScroller  = leafScroll.get('monthScroll'), dayScroller  = leafScroll.get('dayScroll'), itemHeight = ele[0].querySelector('.item').clientHeight;
+                            yearScroller.refresh();
+                            yearScroller.scrollTo(0, -itemHeight * ($scope.$yearRange[1] - 2));
+                            monthScroller.refresh();
+                            monthScroller.scrollTo(0, -itemHeight * ($scope.$pickedMonth - 3));
+                            dayScroller.refresh();
+                            dayScroller.scrollTo(0, -itemHeight * ($scope.$pickedDay - 3));
+                            yearScroller.on('scroll', function() {
+                                var times = this.y / itemHeight, flooredTimes = Math.floor(times);
+                                if (times + flooredTimes > 0.1 || times + flooredTimes < -0.1) {
+                                    $scope.$apply(function() {
+                                        $scope.$pickedYear = $scope.$years[Math.abs(flooredTimes)];
+                                    });
+                                }
+                            });
+                            yearScroller.on('scrollEnd', function() {
+                                var times = this.y / itemHeight;
+                                if (times.toString().indexOf('.') !== -1) {
+                                    yearScroller.scrollTo(0, Math.floor(times) * itemHeight, 300);
+                                }
+                            });
+                            monthScroller.on('scroll', function() {
+                                var times = this.y / itemHeight, flooredTimes = Math.floor(times);
+                                if (times + flooredTimes > 0.1 || times + flooredTimes < -0.1) {
+                                    $scope.$apply(function() {
+                                        $scope.$pickedMonth = $scope.$monthes[Math.abs(flooredTimes)];
+                                    });
+                                }
+                            });
+                            monthScroller.on('scrollEnd', function() {
+                                var times = this.y / itemHeight;
+                                if (times.toString().indexOf('.') !== -1) {
+                                    monthScroller.scrollTo(0, Math.floor(times) * itemHeight, 300);
+                                }
+                            });
+                            dayScroller.on('scroll', function() {
+                                var times = this.y / itemHeight, flooredTimes = Math.floor(times);
+                                if (times + flooredTimes > 0.1 || times + flooredTimes < -0.1) {
+                                    $scope.$apply(function() {
+                                        $scope.$pickedDay = $scope.$days[Math.abs(flooredTimes)];
+                                    });
+                                }
+                            });
+                            dayScroller.on('scrollEnd', function() {
+                                var times = this.y / itemHeight;
+                                if (times.toString().indexOf('.') !== -1) {
+                                    dayScroller.scrollTo(0, Math.floor(times) * itemHeight, 300);
+                                }
+                            });
+                        }
+                    });
+                };
+                $scope.pickYear = function(year) {
+                    $scope.$pickedYear = year;
+                };
+                $scope.pickMonth = function(month) {
+                    $scope.$pickedMonth = month;
+                };
+                $scope.pickDay = function(day) {
+                    $scope.$pickedDay = day;
+                };
+            },
+            link: function(scope, ele, attrs) {
+                if(!attrs.ngModel) throw "ng-model must specified to leaf-datepicker";
+                scope.$text = {
+                    year: (attrs.text && attrs.text.year) || "year",
+                    month: (attrs.text && attrs.text.month) || "month",
+                    day: (attrs.text && attrs.text.day) || "day",
+                };
+                scope.$yearRange = [-5, 5];
+                scope.$currentDate = {
+                    date: new Date()
+                };
+                scope.$currentDate.year = scope.$currentDate.date.getYear() + 1900;
+                scope.$currentDate.month = scope.$currentDate.date.getMonth() + 1;
+                scope.$currentDate.day = scope.$currentDate.date.getDate();
+                scope.$pickedYear = scope.$currentDate.year;
+                scope.$pickedMonth = scope.$currentDate.month;
+                scope.$pickedDay = scope.$currentDate.day;
+                scope.$years = generateYears();
+                scope.$monthes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+                scope.$watch('$pickedYear', function() {
+                    scope.$days = generateDays();
+                });
+                scope.$watch('$pickedMonth', function() {
+                    scope.$days = generateDays();
+                });
+
+                function generateYears() {
+                    var years = [];
+                    for (var i = scope.$currentDate.year + scope.$yearRange[0]; i <= scope.$currentDate.year + scope.$yearRange[1]; i++) {
+                        years.push(i);
+                    }
+                    return years;
+                }
+                function generateDays() {
+                    var dayCount = 0, days = [], month = scope.$pickedMonth, year = scope.$pickedYear;
+
+                    if (month == 1 || month == 3 || month == 5 || month == 7 || month == 9 || month == 10 || month == 12)  {
+                        dayCount = 31;
+                    } else if (month == 4 || month == 6 || month == 8 || month == 11)  {
+                        dayCount = 30;
+                    } else  { // 2月份，闰年29天、平年28天
+                        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)  {
+                            dayCount = 29;
+                        }  else {
+                            dayCount = 28;
+                        }
+                    }
+                    for(var i = 1; i <= dayCount; i++) {
+                        days.push(i);
+                    }
+
+                    return days;
+                }
+            }
+        };
+    });
+
     leafUi.directive('leafToggle', function() {
         var tpl = "<div class='leaf-toggle-wrapper'>"
                 +   "<span class='leaf-toggle-label'></span>"
@@ -2758,9 +2912,6 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 $scope.$toggleState = function() {
                     $scope.ngModel = !$scope.ngModel;
                 };
-            },
-            link: function(scope, ele, attrs) {
-                ele.find('span')[0].textContent = attrs.label;
             }
         };
     });

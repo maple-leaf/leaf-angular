@@ -23,6 +23,7 @@
                     <form name="formDemo" id="formTab">
                         <leaf-select options="{{ sampleOptions }}" name="sampleSelect" ng-model="sampleSelect" required ng-change="testChange(newValue, oldValue)"></leaf-select>
                         <input type="number" ng-model="text" required min="3" max="100" placeholder="min 3, max 100">
+                        <leaf-datepicker ng-model="date"></leaf-datepicker>
                         <leaf-toggle ng-model="state" label="Toggle the state"></leaf-toggle>
                         <leaf-radio ng-model="sex" required>
                             <label class="radio"><input type="radio" name="sex" value="M">男</label>

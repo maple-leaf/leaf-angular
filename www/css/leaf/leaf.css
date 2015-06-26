@@ -4117,7 +4117,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 /* line 72, ../../../scss/leaf/_leafForm.scss */
-leaf-select, leaf-radio, leaf-checkbox, leaf-toggle {
+leaf-select, leaf-radio, leaf-checkbox, leaf-toggle, leaf-datepicker {
   display: block;
 }
 
@@ -4217,6 +4217,37 @@ leaf-select, leaf-radio, leaf-checkbox, leaf-toggle {
 /* line 155, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper .checkbox-text {
   vertical-align: middle;
+}
+
+/* line 161, ../../../scss/leaf/_leafForm.scss */
+.leaf-datepicker-popup .leaf-popup-content {
+  text-align: center;
+  padding: 0 2%;
+}
+/* line 20, ../../../scss/bourbon/addons/_clearfix.scss */
+.leaf-datepicker-popup .leaf-popup-content::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+/* line 166, ../../../scss/leaf/_leafForm.scss */
+.leaf-datepicker-popup .list {
+  height: 390px;
+  width: 16%;
+  float: left;
+}
+/* line 171, ../../../scss/leaf/_leafForm.scss */
+.leaf-datepicker-popup .text {
+  line-height: 390px;
+  text-transform: capitalize;
+}
+/* line 175, ../../../scss/leaf/_leafForm.scss */
+.leaf-datepicker-popup .item {
+  line-height: 78px;
+}
+/* line 178, ../../../scss/leaf/_leafForm.scss */
+.leaf-datepicker-popup .picked {
+  color: #3fab6d;
 }
 
 /*
