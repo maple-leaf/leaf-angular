@@ -1,6 +1,6 @@
 var ptwx = angular.module('ptwx', ['leaf']);
 
-ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider) {
+ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, leafScroll, $http) {
     $scope.sampleOptions = [
         {
             text: "option A",
@@ -42,4 +42,34 @@ ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider) {
     leafSlider.getSliders().then(function(slider) {
         $scope.slider = slider;
     });
+
+    $scope.testChange = function(o, n) {
+        console.log(o);
+        console.log(n);
+    };
+
+    $http.get('http://localhost:7878/test').success(function(data) {
+        $scope.test = data;
+        $scope.$refresh();
+    })
+    .error(function(data) {
+        console.error(data);
+    });
+    $scope.load = function(cb) {
+        $http.get('http://localhost:7878/test').success(function(data) {
+            $scope.test = $scope.test.concat(data);
+            cb();
+        })
+        .error(function(data) {
+            console.error(data);
+        });
+    };
+    $scope.$onLeafTabSwitched = function() {
+        console.log($scope.$currentTab);
+        if ($scope.$currentTab === "#infiniteTab") {
+            $scope.$leafContent.pullLoad.enable();
+        } else {
+            $scope.$leafContent.pullLoad.disable();
+        }
+    };
 });

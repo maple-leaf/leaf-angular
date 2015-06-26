@@ -2347,7 +2347,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         *
         * @return {undefined}
     */
-    leafUi.factory('leafPopup', function($document, $compile, $rootScope, $http, $q, $timeout) {
+    leafUi.factory('leafPopup', ['$document', '$compile', '$rootScope', '$http', '$q', '$timeout', function($document, $compile, $rootScope, $http, $q, $timeout) {
         return {
             init: function(options) {
                 var _defaultOptions, _options, popup, proto;
@@ -2454,9 +2454,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 return new popup();
             }
         };
-    });
+    }]);
 
-    leafUi.factory('leafActionSheet', function(leafPopup) {
+    leafUi.factory('leafActionSheet', ['leafPopup', function(leafPopup) {
         return {
             init: function(options) {
                 var _defaultOptions, _options;
@@ -2477,7 +2477,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 leafPopup.init(_options);
             }
         };
-    });
+    }]);
 
     leafUi.factory('leafScroll', function() {
         var scrolls = {};
@@ -2503,7 +2503,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         };
     });
 
-    leafUi.directive('leafScroll', function($timeout, leafScroll) {
+    leafUi.directive('leafScroll', ['$timeout', 'leafScroll', function($timeout, leafScroll) {
         return {
             restrict: 'E',
             transclude: true,
@@ -2535,9 +2535,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 });
             }
         };
-    });
+    }]);
 
-    leafUi.directive('leafContent', function($rootScope, $timeout, leafScroll) {
+    leafUi.directive('leafContent', ['$rootScope', '$timeout', 'leafScroll', function($rootScope, $timeout, leafScroll) {
         return {
             restrict: 'E',
             transclude: true,
@@ -2653,9 +2653,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 };
             }
         };
-    });
+    }]);
 
-    leafUi.directive('leafHeader', function($document, leafScroll) {
+    leafUi.directive('leafHeader', ['$document', 'leafScroll', function($document, leafScroll) {
         var tpl = '<div class="leaf-header-wrapper" ng-transclude>'
                 + '</div>';
         return {
@@ -2666,9 +2666,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 $document.find('leaf-wrapper').addClass('has-header');
             }
         };
-    });
+    }]);
 
-    leafUi.directive('leafFooter', function(leafScroll, $document) {
+    leafUi.directive('leafFooter', ['leafScroll', '$document', function(leafScroll, $document) {
         var tpl = '<div class="leaf-footer-wrapper" ng-transclude>'
                 + '</div>';
         return {
@@ -2679,9 +2679,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 $document.find('leaf-wrapper').addClass('has-footer');
             }
         };
-    });
+    }]);
 
-    leafUi.directive('leafSelect', function(leafPopup, $document) {
+    leafUi.directive('leafSelect', ['leafPopup', '$document', function(leafPopup, $document) {
         var tpl = "<div class='leaf-select-wrapper'>"
         +   "<div class='leaf-select-selected' ng-click='$showSelect()'>{{ selected }}</div>"
         + "</div>";
@@ -2694,7 +2694,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 ngChange: "&",
                 relateTo: "=" // TODO: why @ not working
             },
-            controller: function($scope) {
+            controller: ['$scope', function($scope) {
                 $scope.$showSelect = function() {
                     var optionTpl = "<div class='list'>"
                         +     "<div  ng-class='{\"item checked\": option.checked, \"item\" :!options.checked}' ng-repeat='option in copiedOptions track by $index' ng-click='$changeSelectValue(option);'>{{ option.text }}"
@@ -2720,7 +2720,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                     $scope.optionsPopup.close();
                     $scope.ngChange({'newValue': newValue, 'oldValue': oldValue});
                 };
-            },
+            }],
             link: function(scope, ele, attrs) {
                 if(!attrs.ngModel) throw "ng-model must specified to leaf-select";
                 scope.checkedIconClass = attrs.checkedIconClass || "fa fa-check";
@@ -2744,9 +2744,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 copyOptions();
             }
         };
-    });
+    }]);
 
-    leafUi.directive('leafDatepicker', function(leafPopup, leafScroll, $document) {
+    leafUi.directive('leafDatepicker', ['leafPopup', 'leafScroll', '$document', function(leafPopup, leafScroll, $document) {
         var tpl = "<div class='leaf-datepicker-wrapper'>"
         +   "<div class='leaf-datepicker-picked' ng-click='$showDatepicker()'>{{ $pickedYear }} - {{ $pickedMonth }} - {{ $pickedDay }}</div>"
         + "</div>";
@@ -2757,7 +2757,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 ngModel: "=",
                 ngChange: "&",
             },
-            controller: function($scope) {
+            controller: ['$scope', function($scope) {
                 $scope.$showDatepicker = function() {
                     var optionTpl = "<leaf-scroll class='list' id='yearScroll'>"
                         +     "<div ng-class='{\"item picked\": year===$pickedYear, \"item\" :!options.checked}' ng-repeat='year in $years track by $index' ng-click='pickYear(year)'>{{ year }}</div>"
@@ -2838,7 +2838,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 $scope.pickDay = function(day) {
                     $scope.$pickedDay = day;
                 };
-            },
+            }],
             link: function(scope, ele, attrs) {
                 if(!attrs.ngModel) throw "ng-model must specified to leaf-datepicker";
                 scope.$text = {
@@ -2894,7 +2894,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 }
             }
         };
-    });
+    }]);
 
     leafUi.directive('leafToggle', function() {
         var tpl = "<div class='leaf-toggle-wrapper'>"
@@ -2908,11 +2908,11 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
             scope: {
                 ngModel: "="
             },
-            controller: function($scope) {
+            controller: ['$scope', function($scope) {
                 $scope.$toggleState = function() {
                     $scope.ngModel = !$scope.ngModel;
                 };
-            }
+            }]
         };
     });
 
@@ -3063,7 +3063,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         };
     });
 
-    leafUi.directive('leafTab', function($rootScope, $compile) {
+    leafUi.directive('leafTab', ['$rootScope', '$compile', function($rootScope, $compile) {
         return {
             restrict: 'E',
             link: function(scope, ele, attrs) {
@@ -3083,9 +3083,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 });
             }
         };
-    });
+    }]);
 
-    leafUi.directive('leafTabsNav', function($rootScope, $compile) {
+    leafUi.directive('leafTabsNav', ['$rootScope', '$compile', function($rootScope, $compile) {
         return {
             restrict: 'E',
             link: function(scope, ele, attrs) {
@@ -3119,9 +3119,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 bindClick();
             }
         };
-    });
+    }]);
 
-    leafUi.directive('leafSidebarToggle', function($rootScope) {
+    leafUi.directive('leafSidebarToggle', ['$rootScope', function($rootScope) {
         return {
             restrict: 'A',
             link: function(scope, ele, attrs) {
@@ -3130,9 +3130,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 });
             }
         };
-    });
+    }]);
 
-    leafUi.directive('leafSidebar', function($timeout) {
+    leafUi.directive('leafSidebar', ['$timeout', function($timeout) {
         // http://angular-tips.com/blog/2014/03/transclusion-and-scopes/
         return {
             restrict: 'E',
@@ -3173,9 +3173,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 });
             }
         };
-    });
+    }]);
 
-    leafUi.directive('leafSlider', function($timeout) {
+    leafUi.directive('leafSlider', ['$timeout', function($timeout) {
         var tpl = "<div class='swiper-wrapper' ng-transclude></div>";
         return {
             template: tpl,
@@ -3196,9 +3196,9 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 });
             }
         };
-    });
+    }]);
 
-    leafUi.factory('leafSlider', function($timeout, $q) {
+    leafUi.factory('leafSlider', ['$timeout', '$q', function($timeout, $q) {
         return {
             getSlider: function(id) {
                 var deferred = $q.defer(), ele;
@@ -3233,7 +3233,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 return deferred.promise;
             }
         };
-    });
+    }]);
 })(IScroll, Swiper, window);
 
 (function() {
