@@ -76,7 +76,9 @@ module.exports = function(grunt) {
             }
         },
         uglify: {
-            options: {},
+            options: {
+                banner: "/**\n ** leaf-angular\n **A ui framework based on angularjs\n ** http://maple-leaf.github.io/leaf-angular\n ** Copyright 2015, maple-leaf\n ** Email: tjfdfs@gmail.com/tangjf.88@163.com\n ** Licensed under MIT\n*/\n"
+            },
             leaf: {
                 files: {
                     'www/js/leaf.min.js': ['www/js/leaf.annotated.js']

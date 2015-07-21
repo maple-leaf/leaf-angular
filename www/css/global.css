@@ -4026,6 +4026,23 @@ leaf-scroll.leaf-scroll-horizontal .leaf-scroll-wrapper {
   display: inline-block;
 }
 
+/* line 167, ../../scss/leaf/_main.scss */
+.leaf-page-loading {
+  position: absolute;
+  z-index: 99999;
+  background-color: #fff;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+/* line 177, ../../scss/leaf/_main.scss */
+.leaf-page-loading .leaf-page-wrapper {
+  margin-top: 40%;
+}
+
 /* Sidebar */
 /* Form */
 /* ActionSheet */

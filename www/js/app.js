@@ -1,6 +1,8 @@
 var ptwx = angular.module('ptwx', ['leaf']);
 
-ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, leafScroll, $http) {
+ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, leafScroll, leafPageload, $http) {
+    leafPageload.start();
+    leafPageload.done();
     $scope.sampleOptions = [
         {
             text: "option A",

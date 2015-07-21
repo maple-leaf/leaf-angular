@@ -163,3 +163,17 @@ leaf-scroll {
         }
     }
 }
+
+.leaf-page-loading {
+    position: absolute;
+    z-index: 99999;
+    background-color: #fff;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.leaf-page-loading .leaf-page-wrapper {
+    margin-top: 40%;
+}
