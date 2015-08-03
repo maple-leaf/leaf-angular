@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>莆田药械</title>
+        <meta content="telephone=no,email=no" name="format-detection">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=0.4, user-scalable=no">
+        <link href="../css/leaf.min.css" rel="stylesheet" type="text/css" media="all">
+        <link href="../css/register.css" rel="stylesheet" type="text/css" media="all">
+    </head>
+    <body ng-app="ptwx" ng-cloak>
+        <leaf-wrapper>
+            <leaf-content ng-controller="registerCtrl">
+                <div class="wrapper">
+                    <ul ng-hide="step2Visible" class="step1">
+                        <li ng-click="personalVisible=true; corporationVisible=false" ng-class="{'selected': personalVisible, '': !personalVisible}">个人<span class="iconfont iconfont-dagou"></span></li>
+                        <li ng-click="corporationVisible=true; personalVisible=false" ng-class="{'selected': corporationVisible, '': !corporationVisible}">机构<span class="iconfont iconfont-dagou"></span></li>
+                        <li class="next btn btn-green" ng-click="showStep('2')">下一步</li>
+                    </ul>
+                    <form name="personalForm" novalidate ng-show="step2Visible&&personalVisible" class="form">
+                        <div class="field">
+                            <input name="pwd" type="password" placeholder="请输入密码">
+                        </div>
+                        <div class="field">
+                            <input name="pwdConfirm" type="password" placeholder="再次输入密码">
+                        </div>
+                        <div class="field">
+                            <input type="tel" name="phone" placeholder="请输入手机号">
+                        </div>
+                        <div class="field code">
+                            <input type="text" placeholder="验证码" name="code">
+                            <span class="send" ng-click="getConfirmCode()" ng-class="{'disabled': getConfirmCodeDisabled, '': !getConfirmCodeDisabled}">{{ getConfirmCodeText }}</span>
+                        </div>
+                        <button class="btn btn-green register-btn">注册</button>
+                    </form>
+                    <form name="corporationForm" novalidate ng-show="step2Visible&&corporationVisible" class="form">
+                        <div ng-show="step2_1Visible" class="step2-1">
+                            <div class="field">
+                                <input name="uname" type="password" placeholder="请输入用户名">
+                            </div>
+                            <div class="field">
+                                <input name="pwd" type="password" placeholder="请输入密码">
+                            </div>
+                            <div class="field">
+                                <input name="pwdConfirm" type="password" placeholder="再次输入密码">
+                            </div>
+                            <div class="next btn btn-green" ng-click="showStep('2_2')">下一步</div>
+                        </div>
+                        <div ng-show="step2_2Visible" class="step2-2">
+                            <div class="field">
+                                <leaf-select options="{{ corTypes }}" ng-model="selectCor" default-text="请选择机构类型" checked-icon-class="iconfont iconfont-dagou"></leaf-select>
+                                <input name="corName" type="text" placeholder="机构名称" class="cor-name">
+                            </div>
+                            <div class="field locate">
+                                <leaf-select options="{{ provinces }}" ng-model="selectedProvince" default-text="省份" checked-icon-class="iconfont iconfont-dagou" ng-change="provinceChanged(newValue)"></leaf-select>
+                                <leaf-select options="{{ relativeCities }}" ng-model="selectedCity" default-text="城市" checked-icon-class="iconfont iconfont-dagou" relate-to="selectedProvince"></leaf-select>
+                            </div>
+                            <div class="field">
+                                <textarea placeholder="机构所在地详细地址"></textarea>
+                            </div>
+                            <div class="next btn btn-green" ng-click="showStep('2_3')">下一步</div>
+                        </div>
+                        <div ng-show="step2_3Visible" class="step2-3">
+                            <div class="field">
+                                <input name="name" type="text" placeholder="办理人姓名">
+                            </div>
+                            <div class="field">
+                                <input name="corPhone" type="tel" placeholder="办理人手机号">
+                            </div>
+                            <div class="field code">
+                                <input type="text" placeholder="验证码" name="code">
+                                <span class="send">发送验证码</span>
+                            </div>
+                            <button class="btn btn-green register-btn">注册</button>
+                        </div>
+                    </form>
+                </div>
+            </leaf-content>
+        </leaf-wrapper>
+        <script src="../js/leaf.min.js" type="text/javascript"></script>
+        <script src="../js/app.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            ptwx.value('model', {
+                corTypes: [
+                    {
+                        text: '医用服饰企业',
+                        value: '1'
+                    },
+                    {
+                        text: '药店',
+                        value: '2'
+                    }
+                ],
+                provinces: [
+                    {
+                        text: '福建',
+                        value: 'fj'
+                    },
+                    {
+                        text: '浙江',
+                        value: 'zj'
+                    }
+                ],
+                cities: {
+                    "fj": [
+                        {
+                            text: '厦门',
+                            value: 'xm'
+                        },
+                        {
+                            text: '福州',
+                            value: 'fz'
+                        }
+                    ],
+                    "zj": [
+                        {
+                            text: '杭州',
+                            value: 'hz'
+                        },
+                        {
+                            text: '台州',
+                            value: 'tz'
+                        }
+ 
+                    ]
+                }
+            });
+        </script>
+        <script src="../js/register.js" type="text/javascript"></script>
+    </body>
+</html>

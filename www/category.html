@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>分类</title>
+        <meta content="telephone=no,email=no" name="format-detection">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=0.4, user-scalable=no">
+        <link href="css/leaf/leaf.min.css" rel="stylesheet" type="text/css" media="all">
+        <link href="css/category.css" rel="stylesheet" type="text/css" media="all">
+    </head>
+    <body ng-app="ptwx" ng-cloak>
+        <leaf-wrapper ng-controller="categoryCtrl">
+            <leaf-content offset="-2rem">
+                <ul class="nav page-block">
+                    <li ng-repeat="cate in categories track by cate.id">
+                        <a ng-href="{{ cate.link }}" leaf-sidebar-toggle ng-click="showCate($index)"><span class="iconfont iconfont-yaowan"></span><span class="name">{{ cate.name }}</span><span class="desc">{{ cate.desc }}</span><span class="fa fa-angle-right"></span></a>
+                    </li>
+                </ul>
+            </leaf-content>
+            <leaf-sidebar right>
+                <div class="title-bar">
+                    <span class="cell" ng-click="$hideSidebar()"><span class="fa fa-angle-left"></span><span class="text">返回</span></span>
+                    <span class="cell title"><span class="text">{{ currentCate.name }}</span></span>
+                    <span class="cell"><span class="iconfont iconfont-search"></span></span>
+                </div>
+                <div class="cate-menu">
+                    <ul class="menu">
+                        <li ng-repeat="cate in currentCate.sub track by cate.id" ng-class='{"current": cate.id===currentSubId, "": cate.id!==currentSubId}' ng-click="changeSub(cate)">{{ cate.name }}</li>
+                    </ul>
+                    <ul class="submenu">
+                        <li ng-repeat="cate in currentSub track by cate.id"><a href="#">{{ cate.name }}（{{ cate.count }}）</a></li>
+                    </ul>
+                </div>
+            </leaf-sidebar>
+            <leaf-footer>
+                <nav>
+                    <a href="index.html"><span class="fa fa-home"></span><span class="text">Home</span></a>
+                    <a href="category.html" class="current"><span class="fa fa-list"></span><span class="text">Category</span></a>
+                    <a href="about.html"><span class="fa fa-user"></span><span class="text">About</span></a>
+                </nav>
+            </leaf-footer>
+        </leaf-wrapper>
+        <script src="../js/leaf.min.js" type="text/javascript"></script>
+        <script src="../js/app.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            ptwx.value('model', {
+                categories: [
+                    {
+                        "id": "556ebce24ab3f1c801d49aed",
+                        "name": "Main category",
+                        "desc": "Main category Main category",
+                        "sub": [
+                            {
+                                "id": "556ebce2d7b69ad95cad5736",
+                                "name": "Sub category",
+                                "sub": [
+                                    {
+                                        "id": "556ebce24838c51adcba8048",
+                                        "name": "Sub sub category",
+                                        "count": 32
+                                    },
+                                    {
+                                        "id": "556ebce2c17db56d9b8506da",
+                                        "name": "Sub sub category",
+                                        "count": 96
+                                    },
+                                    {
+                                        "id": "556ebce216798ffced328d0b",
+                                        "name": "Sub sub category",
+                                        "count": 53
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "556ebce23ccce1bcbae3443a",
+                                "name": "Sub category",
+                                "sub": [
+                                    {
+                                        "id": "l556ebce284724b380eaf1b8c",
+                                        "name": "Sub sub category",
+                                        "count": 28
+                                    },
+                                    {
+                                        "id": "g556ebce284724b380eaf1b8c",
+                                        "name": "Sub sub category",
+                                        "count": 28
+                                    },
+                                    {
+                                        "id": "f556ebce284724b380eaf1b8c",
+                                        "name": "Sub sub category",
+                                        "count": 28
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "556ebce2b5648086b7d4d645",
+                        "name": "Main category",
+                        "desc": "Main category Main category",
+                        "sub": [
+                            {
+                                "id": "556ebce287e40cc716fac2b6",
+                                "name": "Sub category",
+                                "sub": [
+                                    {
+                                        "id": "556ebce204f3d123db51af29",
+                                        "name": "Sub sub category",
+                                        "count": 41
+                                    },
+                                    {
+                                        "id": "556ebce271e678f938212d70",
+                                        "name": "Sub sub category",
+                                        "count": 81
+                                    },
+                                    {
+                                        "id": "556ebce2b780f7bef7369180",
+                                        "name": "Sub sub category",
+                                        "count": 70
+                                    },
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            });
+        </script>
+        <script src="../js/category.js" type="text/javascript"></script>
+    </body>
+</html>

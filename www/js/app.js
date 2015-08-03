@@ -1,77 +1,148 @@
-var ptwx = angular.module('ptwx', ['leaf']);
+/*
+ * app.js     >2015<
+ * Author: maple-leaf
+ * Email: tjfdfs@gmail.com / tangjf.88@163.com
+ */
 
-ptwx.controller('homeCtrl', function($scope, leafActionSheet, leafSlider, leafScroll, leafPageload, $http) {
+var baseWidthOfSite = 720;
+var ptwx = angular.module('ptwx', ['leaf', 'formUpload']);
+
+ptwx.directive('icon', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, ele, attrs) {
+            // scale icon image
+            var rate = window.innerWidth / baseWidthOfSite;
+            ele.attr('style', "width:" + (ele[0].clientWidth * rate) + "px;height:" + (ele[0].clientHeight * rate) + "px");
+        }
+    }
+})
+.directive('ptwxBack', function() {
+    var template = '<div class="back" ng-click="back()"><span class="fa fa-angle-left"></span><span class="text">返回</span></div>';
+    return {
+        template: template,
+        replace: true,
+        controller: function($scope) {
+            $scope.back = function() {
+                window.history.back();
+            }
+        }
+    }
+})
+.directive('stars', function($compile) {
+    /* 如果没有changeHandler字段则不能更改
+     *<span class="stars large" stars='{"total":5,"score": "{{ guideAssess.score }}","changeHandler":"changeGuideScore"}' ng-model="guideAssess.score"></span>
+     */
+    return {
+        restrict: 'A',
+        link: function(scope, ele, attrs) {
+            function renderHtml() {
+                var html = "", stars = JSON.parse(attrs.stars);
+                for(var i = 0; i < stars.total; i++) {
+                    if (i <= (stars.score - 1)) {
+                        html += '<span class="iconfont iconfont-star"' + (stars.changeHandler ? ' ng-click="' + stars.changeHandler + '(' + (i+1) + ')"' : '') + '></span>';
+                    } else {
+                        html += '<span class="iconfont iconfont-emptyStar"' + (stars.changeHandler ? ' ng-click="' + stars.changeHandler + '(' + (i+1) + ')"' : '') + '></span>';
+                    }
+                }
+                ele[0].innerHTML = html;
+                $compile(ele.contents())(scope);
+            }
+            renderHtml();
+            scope.$watch(attrs.ngModel, function(newValue) {
+                renderHtml();
+            });
+        }
+    }
+});
+
+angular.module('formUpload', [], function($httpProvider) {
+    // Use x-www-form-urlencoded Content-Type
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+
+    /**
+     * The workhorse; converts an object to x-www-form-urlencoded serialization.
+     * @param {Object} obj
+     * @return {String}
+     */
+    var param = function(obj) {
+        var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
+
+        for(name in obj) {
+            value = obj[name];
+
+            if(value instanceof Array) {
+                for(i=0; i<value.length; ++i) {
+                    subValue = value[i];
+                    fullSubName = name + '[' + i + ']';
+                    innerObj = {};
+                    innerObj[fullSubName] = subValue;
+                    query += param(innerObj) + '&';
+                }
+            }
+            else if(value instanceof Object) {
+                for(subName in value) {
+                    subValue = value[subName];
+                    fullSubName = name + '[' + subName + ']';
+                    innerObj = {};
+                    innerObj[fullSubName] = subValue;
+                    query += param(innerObj) + '&';
+                }
+            }
+            else if(value !== undefined && value !== null)
+                query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+        }
+
+        return query.length ? query.substr(0, query.length - 1) : query;
+    };
+
+    // Override $http service's default transformRequest
+    $httpProvider.defaults.transformRequest = [function(data) {
+        return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+    }];
+});
+
+ptwx.factory('pt', function($http, leafPopup, leafPageload) {
+    var methods;
     leafPageload.start();
-    leafPageload.done();
-    $scope.sampleOptions = [
-        {
-            text: "option A",
-            value: 1
-        },
-        {
-            text: "option B",
-            value: 2
-        }
-    ];
-    $scope.cities = [
-        {
-            text: "厦门",
-            value: "xm"
-        },
-        {
-            text: "杭州",
-            value: "hz"
-        }
-    ];
-    $scope.langs = [
-        {
-            text: "汉语",
-            value: "zh"
-        },
-        {
-            text: "英语",
-            value: "en"
-        },
-        {
-            text: "法语",
-            value: "fr"
-        }
-    ];
-    $scope.showActions = function() {
-        leafActionSheet.init();
+    window.onload = function() {
+        calculateRootFontSize();
     };
 
-    leafSlider.getSliders().then(function(slider) {
-        $scope.slider = slider;
-    });
-
-    $scope.testChange = function(o, n) {
-        console.log(o);
-        console.log(n);
+    window.onresize = function() {
+        calculateRootFontSize();
     };
 
-    $http.get('http://localhost:7878/test').success(function(data) {
-        $scope.test = data;
-        $scope.$refresh();
-    })
-    .error(function(data) {
-        console.error(data);
-    });
-    $scope.load = function(cb) {
-        $http.get('http://localhost:7878/test').success(function(data) {
-            $scope.test = $scope.test.concat(data);
-            cb();
-        })
-        .error(function(data) {
-            console.error(data);
-        });
+    function calculateRootFontSize() {
+        var fontSize = (window.innerWidth / baseWidthOfSite) * 40;
+        if (fontSize > 40) fontSize = 40;
+        document.getElementsByTagName('html')[0].setAttribute('style', 'font-size: ' + fontSize + 'px;');
+        methods.onRemChanged();
+        leafPageload.done();
+    }
+
+    methods = {
+        ajax: function(config, successFn, errorFn) {
+            var _this = this;
+            $http(config).success(function(data) {
+                angular.isFunction(successFn) && successFn.call(config, data);
+            }).error(function(data) {
+                if (angular.isFunction(errorFn)) {
+                    errorFn.call(config, data);
+                } else {
+                    _this.messagePopup();
+                }
+            });
+        },
+        messagePopup: function(options) {
+            var _defaultOptions = {
+                className: "ptwx-message-popup",
+                template: "错误!"
+            };
+            leafPopup.init(options || _defaultOptions);
+        },
+        onRemChanged: function() {}
     };
-    $scope.$onLeafTabSwitched = function() {
-        console.log($scope.$currentTab);
-        if ($scope.$currentTab === "#infiniteTab") {
-            $scope.$leafContent.pullLoad.enable();
-        } else {
-            $scope.$leafContent.pullLoad.disable();
-        }
-    };
+
+    return methods;
 });

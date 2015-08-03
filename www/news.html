@@ -1,0 +1,801 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>分类</title>
+        <meta content="telephone=no,email=no" name="format-detection">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=0.4, user-scalable=no">
+        <link href="../css/leaf.min.css" rel="stylesheet" type="text/css" media="all">
+        <link href="../css/news.css" rel="stylesheet" type="text/css" media="all">
+    </head>
+    <body ng-app="ptwx" ng-cloak>
+        <leaf-wrapper ng-controller="newsCtrl">
+            <leaf-header>
+                <leaf-scroll horizontal id="navScroll">
+                    <leaf-tabs-nav class="tabs">
+                        <a href="#putian"><span>普天资讯</span></a>
+                        <a href="#zonghui"><span>总会资讯</span></a>
+                        <a href="#yigai"><span>医改动态</span></a>
+                        <a href="#yiyao"><span>医药政策</span></a>
+                        <a href="#gonggao"><span>奖惩公告</span></a>
+                    </leaf-tabs-nav>
+                </leaf-scroll>
+            </leaf-header>
+            <leaf-content offset="-2rem" pull-load='{"load": "loadMore"}'>
+                <leaf-tab id="putian" current>
+                    <ul class="list">
+                        <li ng-repeat="item in putian track by item.id" ng-class='{"has-image": item.img, "": !item.img}'>
+                            <div class="title"><span class="img"><img ng-src="{{ item.img }}"></span><span class="text">{{ item.title }}</span></div>
+                            <div class="source">来源：{{ item.source }}</div>
+                            <div class="date">{{ item.date | date: "MM月dd日"}}</div>
+                        </li>
+                    </ul>
+                </leaf-tab>
+                <leaf-tab id="zonghui">
+                    <ul class="list">
+                        <li ng-repeat="item in zonghui track by item.id" ng-class='{"has-image": item.img, "": !item.img}'>
+                            <div class="title"><span class="img"><img ng-src="{{ item.img }}"></span><span class="text">{{ item.title }}</span></div>
+                            <div class="source">来源：{{ item.source }}</div>
+                            <div class="date">{{ item.date | date: "MM月dd日"}}</div>
+                        </li>
+                    </ul>
+                </leaf-tab>
+                <leaf-tab id="yigai">
+                    <ul class="list">
+                        <li ng-repeat="item in yigai track by item.id" ng-class='{"has-image": item.img, "": !item.img}'>
+                            <div class="title"><span class="img"><img ng-src="{{ item.img }}"></span><span class="text">{{ item.title }}</span></div>
+                            <div class="source">来源：{{ item.source }}</div>
+                            <div class="date">{{ item.date | date: "MM月dd日"}}</div>
+                        </li>
+                    </ul>
+                </leaf-tab>
+                <leaf-tab id="yiyao">
+                    <ul class="list">
+                        <li ng-repeat="item in yiyao track by item.id" ng-class='{"has-image": item.img, "": !item.img}'>
+                            <div class="title"><span class="img"><img ng-src="{{ item.img }}"></span><span class="text">{{ item.title }}</span></div>
+                            <div class="source">来源：{{ item.source }}</div>
+                            <div class="date">{{ item.date | date: "MM月dd日"}}</div>
+                        </li>
+                    </ul>
+                </leaf-tab>
+                <leaf-tab id="gonggao">
+                    <ul class="list">
+                        <li ng-repeat="item in gonggao track by item.id" ng-class='{"has-image": item.img, "": !item.img}'>
+                            <div class="title"><span class="img"><img ng-src="{{ item.img }}"></span><span class="text">{{ item.title }}</span></div>
+                            <div class="source">来源：{{ item.source }}</div>
+                            <div class="date">{{ item.date | date: "MM月dd日"}}</div>
+                        </li>
+                    </ul>
+                </leaf-tab>
+            </leaf-content>
+            <leaf-footer>
+                <nav>
+                    <a href="index.html"><span class="iconfont iconfont-shouye"></span><span class="text">首页</span></a>
+                    <a href="category.html"><span class="iconfont iconfont-fenlei"></span><span class="text">分类</span></a>
+                    <a href="sale.html"><span class="iconfont iconfont-paimai"></span><span class="text">竞价</span></a>
+                    <a href="cart.html"><span class="iconfont iconfont-shopcar"></span><span class="text">购物车</span></a>
+                    <a href="news.html" class="current"><span class="iconfont iconfont-xinwen"></span><span class="text">资讯</span></a>
+                </nav>
+            </leaf-footer>
+        </leaf-wrapper>
+        <script src="../js/leaf.js" type="text/javascript"></script>
+        <script src="../js/app.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            ptwx.value('model', {
+                "putian": [
+                    {
+                        "id": "55769bc990e281035f57ea14",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9809b93723963bc55",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9282c52ef14e20988",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ecabed865479b61e",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9562481959b739592",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc999017d1067ee90d5",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9c128cd4700f98638",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ed17a654c0c4ba7e",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc905d41d06bbb58c1b",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc94e6fffc6fe037d5d",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9502907a94a1e3d41",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b7f8df9998ea6c52",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9e0bb5719c2e2e855",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b95443592f38867d",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc92e58cc70c6a71d18",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9af4d8a43fc06f509",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ede6a27c259bd650",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b1e82ece296f3c77",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9781bc3320c75aab1",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b86c19a99949cd97",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    }
+                ],
+                "zonghui": [
+                    {
+                        "id": "55769bc990e281035f57ea14",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9809b93723963bc55",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9282c52ef14e20988",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ecabed865479b61e",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9562481959b739592",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc999017d1067ee90d5",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9c128cd4700f98638",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ed17a654c0c4ba7e",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc905d41d06bbb58c1b",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc94e6fffc6fe037d5d",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9502907a94a1e3d41",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b7f8df9998ea6c52",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9e0bb5719c2e2e855",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b95443592f38867d",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc92e58cc70c6a71d18",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9af4d8a43fc06f509",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ede6a27c259bd650",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b1e82ece296f3c77",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9781bc3320c75aab1",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b86c19a99949cd97",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    }
+                ],
+                "yigai": [
+                    {
+                        "id": "55769bc990e281035f57ea14",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9809b93723963bc55",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9282c52ef14e20988",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ecabed865479b61e",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9562481959b739592",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc999017d1067ee90d5",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9c128cd4700f98638",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ed17a654c0c4ba7e",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc905d41d06bbb58c1b",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc94e6fffc6fe037d5d",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9502907a94a1e3d41",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b7f8df9998ea6c52",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9e0bb5719c2e2e855",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b95443592f38867d",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc92e58cc70c6a71d18",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9af4d8a43fc06f509",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ede6a27c259bd650",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b1e82ece296f3c77",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9781bc3320c75aab1",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b86c19a99949cd97",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    }
+                ],
+                "yiyao": [
+                    {
+                        "id": "55769bc990e281035f57ea14",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9809b93723963bc55",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9282c52ef14e20988",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ecabed865479b61e",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9562481959b739592",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc999017d1067ee90d5",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9c128cd4700f98638",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ed17a654c0c4ba7e",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc905d41d06bbb58c1b",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc94e6fffc6fe037d5d",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9502907a94a1e3d41",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b7f8df9998ea6c52",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9e0bb5719c2e2e855",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b95443592f38867d",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc92e58cc70c6a71d18",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9af4d8a43fc06f509",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ede6a27c259bd650",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b1e82ece296f3c77",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9781bc3320c75aab1",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b86c19a99949cd97",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    }
+                ],
+                "gonggao": [
+                    {
+                        "id": "55769bc990e281035f57ea14",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9809b93723963bc55",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9282c52ef14e20988",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ecabed865479b61e",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9562481959b739592",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc999017d1067ee90d5",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9c128cd4700f98638",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ed17a654c0c4ba7e",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc905d41d06bbb58c1b",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc94e6fffc6fe037d5d",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9502907a94a1e3d41",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b7f8df9998ea6c52",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9e0bb5719c2e2e855",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b95443592f38867d",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc92e58cc70c6a71d18",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9af4d8a43fc06f509",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9ede6a27c259bd650",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b1e82ece296f3c77",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9781bc3320c75aab1",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    },
+                    {
+                        "id": "55769bc9b86c19a99949cd97",
+                        "title": "福建省莆系医疗抱团回乡再谱新篇 普天药械交易网正式上线",
+                        "source": "普天药械交易网",
+                        "img": "/images/news.jpg",
+                        "date": 1433400259412
+                    }
+                ],
+            });
+        </script>
+        <script src="../js/news.js" type="text/javascript"></script>
+    </body>
+</html>

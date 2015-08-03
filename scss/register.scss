@@ -1,0 +1,75 @@
+@import 'bourbon/bourbon';
+@import 'global';
+
+.wrapper {
+    padding: 18px 0;
+    width: 95.5556%;
+    margin: 0 auto;
+}
+
+.step1 {
+    padding-left: 0;
+    li {
+        list-style-type: none;
+        line-height: 2.15rem;
+        height: 2.15rem;
+        border: 1px solid #ccc;
+        padding: 0 40px 0 30px;
+        position: relative;
+        font-size: 0.85rem;
+        color: #333;
+        box-sizing: border-box;
+        margin-bottom: 0.55rem;
+        .iconfont {
+            color: #ccc;
+            position: absolute;
+            right: 40px;
+            top: 0;
+            height: 100%;
+            font-size: 1.5rem;
+        }
+        &.selected {
+            border-color: #3fac6e;
+            .iconfont {
+                color: #3fac6e;
+            }
+        }
+    }
+    .next {
+        color: #fff;
+    }
+}
+
+.next, .register-btn {
+    width: 100%;
+    margin-top: 1.25rem;
+}
+
+.step1 {
+    .next, .register-btn {
+        margin-top: 2.75rem;
+    }
+}
+
+.step2-2 {
+    input[type="text"] {
+        border-top: none;
+    }
+    .locate {
+        @include clearfix;
+        margin-top: 1rem;
+        leaf-select {
+            float: left;
+            width: 39.8256%;
+            &:last-child {
+                width: 60.1744%;
+                .leaf-select-wrapper {
+                    border-left: none;
+                }
+            }
+        }
+    }
+    textarea {
+        height: 3.6rem;
+    }
+}

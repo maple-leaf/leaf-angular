@@ -116,15 +116,10 @@ module.exports = function(grunt) {
                     ext: '.min.css',
                 }]
             }
-        },
-        apimocker: {
-            options: {
-                configFile: 'mocker.json'
-            }
         }
     });
 
     // grunt task registration
-    grunt.registerTask('default', ['apimocker', 'clean', 'connect:dev', 'sass:dev', 'sass:publish', 'concat:leaf', 'watch']);
+    grunt.registerTask('default', ['clean', 'connect:dev', 'sass:dev', 'sass:publish', 'concat:leaf', 'watch']);
     grunt.registerTask('publish', ['sass:publish', 'concat:leaf', 'ngAnnotate', 'uglify']);
 };
