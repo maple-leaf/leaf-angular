@@ -1,3 +1,3 @@
-ptwx.controller('homeCtrl', function($scope, pt, model) {
+leafDemo.controller('homeCtrl', function($scope, demo, model) {
     angular.extend($scope, model);
 });

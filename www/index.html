@@ -10,11 +10,12 @@
         <link href="css/leaf/leaf.min.css" rel="stylesheet" type="text/css" media="all">
         <link href="css/home.css" rel="stylesheet" type="text/css" media="all">
     </head>
-    <body ng-app="ptwx" ng-cloak>
+    <body ng-app="leafDemo" ng-cloak>
         <leaf-wrapper ng-controller="homeCtrl">
             <leaf-header>
-                <span class="fa fa-user" leaf-sidebar-toggle></span>
-                <input type="search" name="search" placeholder="search">
+                <span class="fa fa-leaf" leaf-sidebar-toggle></span>
+                <!-- <input type="search" name="search" placeholder="search"> -->
+                <span class="title">Leaf-angular UI Framework</span>
                 <a href="mailto:tangjf.88@163.com" class="fa fa-envelope"></a>
             </leaf-header>
             <leaf-content offset="-80">
@@ -30,24 +31,10 @@
                     <li><a href="#"><span class="circle"><span class="fa fa-github"></span></span>maple-leaf</a></li>
                 </ul>
                 </div>
-                <div class="product-list page-block">
-                    <div class="title-bar"><span class="iconfont iconfont-new"></span>Product List<a href="#" class="flr more">more</a></div>
+                <div class="page-block">
+                    <div class="title-bar"><span class="fa fa-qrcode"></span><span>View the demo on mobile by scanning qrcode below</span></div>
                     <div class="block-content">
-                        <div class="product-block" ng-repeat="product in products track by product.id">
-                            <img ng-src="{{ product.img }}">
-                            <div class="price">&yen; {{ product.price }}</div>
-                            <div class="product-title">{{ product.name }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-list page-block">
-                    <div class="title-bar"><span class="iconfont iconfont-hot"></span>热销品种<a href="#" class="flr more">更多</a></div>
-                    <div class="block-content">
-                        <div class="product-block" ng-repeat="hot in hots track by hot.id">
-                            <img ng-src="{{ hot.img }}">
-                            <div class="price">&yen; {{ hot.price }}</div>
-                            <div class="hot-title">{{ hot.name }}</div>
-                        </div>
+                      <img src="images/github-gh-page-qrcode.png" alt="http://maple-leaf.github.io/leaf-angular/">
                     </div>
                 </div>
             </leaf-content>
@@ -71,35 +58,35 @@
         <script src="js/leaf.min.js" type="text/javascript"></script>
         <script src="js/app.js" type="text/javascript"></script>
         <script type="text/javascript">
-            ptwx.value('model', {
-                products: [
-                    {
-                        id: 1,
-                        img: "images/maple.jpg",
-                        name: "Name name name title",
-                        price: 1314
-                    },
-                    {
-                        id: 2,
-                        img: "images/maple.jpg",
-                        name: "Name name name title",
-                        price: 520
-                    }
-                ],
-                hots: [
-                    {
-                        id: 1,
-                        img: "images/maple.jpg",
-                        name: "Name name name title",
-                        price: 1314
-                    },
-                    {
-                        id: 2,
-                        img: "images/maple.jpg",
-                        name: "Name name name title",
-                        price: 520
-                    }
-                ]
+            leafDemo.value('model', {
+                // products: [
+                //     {
+                //         id: 1,
+                //         img: "images/maple.jpg",
+                //         name: "Name name name title",
+                //         price: 1314
+                //     },
+                //     {
+                //         id: 2,
+                //         img: "images/maple.jpg",
+                //         name: "Name name name title",
+                //         price: 520
+                //     }
+                // ],
+                // hots: [
+                //     {
+                //         id: 1,
+                //         img: "images/maple.jpg",
+                //         name: "Name name name title",
+                //         price: 1314
+                //     },
+                //     {
+                //         id: 2,
+                //         img: "images/maple.jpg",
+                //         name: "Name name name title",
+                //         price: 520
+                //     }
+                // ]
             });
         </script>
         <script src="js/home.js" type="text/javascript"></script>

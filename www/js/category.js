@@ -1,4 +1,4 @@
-ptwx.controller('categoryCtrl', function($scope, pt, model) {
+leafDemo.controller('categoryCtrl', function($scope, demo, model) {
     $scope.categories = model.categories;
     $scope.showCate = function(index) {
         $scope.currentCate = $scope.categories[index];

@@ -291,22 +291,22 @@ textarea:-ms-input-placeholder {
 }
 
 /* line 223, ../../scss/_global.scss */
-.ptwx-message-popup .leaf-popup-inner {
+.demo-message-popup .leaf-popup-inner {
   border-radius: 12px;
 }
 /* line 226, ../../scss/_global.scss */
-.ptwx-message-popup .leaf-popup-content {
+.demo-message-popup .leaf-popup-content {
   padding: .9rem 0;
   text-align: center;
   font-size: .65rem;
 }
 /* line 230, ../../scss/_global.scss */
-.ptwx-message-popup .leaf-popup-content .title {
+.demo-message-popup .leaf-popup-content .title {
   font-size: .85rem;
   margin-bottom: .5rem;
 }
 /* line 235, ../../scss/_global.scss */
-.ptwx-message-popup .leaf-popup-footer {
+.demo-message-popup .leaf-popup-footer {
   border-top: 1px solid #ccc;
   text-align: center;
   line-height: 2.2rem;
@@ -314,7 +314,7 @@ textarea:-ms-input-placeholder {
   font-size: .85rem;
 }
 /* line 241, ../../scss/_global.scss */
-.ptwx-message-popup .leaf-popup-footer span {
+.demo-message-popup .leaf-popup-footer span {
   display: block;
 }
 
@@ -374,7 +374,7 @@ leaf-footer .leaf-footer-wrapper nav {
 leaf-footer .leaf-footer-wrapper a {
   display: table-cell;
   width: 20%;
-  background-color: #000;
+  background-color: #ae1608;
   color: #fff;
   text-decoration: none;
   text-align: center;
@@ -382,7 +382,7 @@ leaf-footer .leaf-footer-wrapper a {
 }
 /* line 300, ../../scss/_global.scss */
 leaf-footer .leaf-footer-wrapper a.current {
-  background-color: #3fac6e;
+  background-color: #f86112;
 }
 /* line 304, ../../scss/_global.scss */
 leaf-footer .leaf-footer-wrapper .fa {
@@ -469,12 +469,12 @@ leaf-footer .leaf-footer-wrapper .text {
 }
 
 /* line 376, ../../scss/_global.scss */
-.ptwx-normal-header {
+.demo-normal-header {
   background-color: #3fab6d;
   height: 2.6rem;
 }
 /* line 379, ../../scss/_global.scss */
-.ptwx-normal-header .leaf-header-wrapper {
+.demo-normal-header .leaf-header-wrapper {
   line-height: 2.6rem;
   display: table;
   table-layout: fixed;
@@ -483,44 +483,44 @@ leaf-footer .leaf-footer-wrapper .text {
   color: #fff;
 }
 /* line 386, ../../scss/_global.scss */
-.ptwx-normal-header .leaf-header-wrapper .fa-angle-left {
+.demo-normal-header .leaf-header-wrapper .fa-angle-left {
   font-size: 1.5rem;
   margin-right: .4rem;
 }
 /* line 390, ../../scss/_global.scss */
-.ptwx-normal-header .leaf-header-wrapper .text {
+.demo-normal-header .leaf-header-wrapper .text {
   vertical-align: middle;
 }
 /* line 393, ../../scss/_global.scss */
-.ptwx-normal-header .leaf-header-wrapper > * {
+.demo-normal-header .leaf-header-wrapper > * {
   display: table-cell;
   vertical-align: middle;
 }
 /* line 396, ../../scss/_global.scss */
-.ptwx-normal-header .leaf-header-wrapper > *:first-child {
+.demo-normal-header .leaf-header-wrapper > *:first-child {
   padding-left: .4rem;
   width: 3.4rem;
 }
 /* line 400, ../../scss/_global.scss */
-.ptwx-normal-header .leaf-header-wrapper > *:nth-child(2) {
+.demo-normal-header .leaf-header-wrapper > *:nth-child(2) {
   text-align: center;
   font-weight: bold;
 }
 /* line 404, ../../scss/_global.scss */
-.ptwx-normal-header .leaf-header-wrapper > *:last-child {
+.demo-normal-header .leaf-header-wrapper > *:last-child {
   padding-right: .8rem;
   text-align: right;
   width: 2rem;
 }
 /* line 410, ../../scss/_global.scss */
-.ptwx-normal-header .leaf-header-wrapper input[type="search"] {
+.demo-normal-header .leaf-header-wrapper input[type="search"] {
   width: 10.8rem;
   line-height: 1.6rem;
   height: 1.6rem;
 }
 
 /* line 419, ../../scss/_global.scss */
-.has-header .ptwx-normal-header + leaf-content {
+.has-header .demo-normal-header + leaf-content {
   top: 2.6rem;
 }
 
@@ -615,7 +615,7 @@ leaf-sidebar .title-bar .cell:first-child {
 }
 /* line 83, ../../scss/category.scss */
 leaf-sidebar .title-bar .cell:nth-child(2) {
-  color: #3fac6e;
+  color: #f86112;
   font-size: .85rem;
   text-align: center;
   width: 12rem;
@@ -673,7 +673,7 @@ leaf-sidebar .menu li {
 leaf-sidebar .menu .current {
   background-color: #fff;
   border-right: none;
-  color: #3fac6e;
+  color: #f86112;
 }
 /* line 137, ../../scss/category.scss */
 leaf-sidebar .submenu {

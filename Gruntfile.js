@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                     livereload: 35729,
                     base: '.',
                     middleware: function(connect, options, middlewares) {
-                        return [connect.static('www')];
+                        return [connect.static('./www')];
                     }
                 }
             }

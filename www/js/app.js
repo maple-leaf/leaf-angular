@@ -5,9 +5,9 @@
  */
 
 var baseWidthOfSite = 720;
-var ptwx = angular.module('ptwx', ['leaf', 'formUpload']);
+var leafDemo = angular.module('leafDemo', ['leaf', 'formUpload']);
 
-ptwx.directive('icon', function() {
+leafDemo.directive('icon', function() {
     return {
         restrict: 'A',
         link: function(scope, ele, attrs) {
@@ -17,7 +17,7 @@ ptwx.directive('icon', function() {
         }
     }
 })
-.directive('ptwxBack', function() {
+.directive('historyBack', function() {
     var template = '<div class="back" ng-click="back()"><span class="fa fa-angle-left"></span><span class="text">返回</span></div>';
     return {
         template: template,
@@ -102,7 +102,7 @@ angular.module('formUpload', [], function($httpProvider) {
     }];
 });
 
-ptwx.factory('pt', function($http, leafPopup, leafPageload) {
+leafDemo.factory('demo', function($http, leafPopup, leafPageload) {
     var methods;
     leafPageload.start();
     window.onload = function() {

@@ -219,7 +219,7 @@ textarea {
     }
 }
 
-.ptwx-message-popup {
+.demo-message-popup {
     .leaf-popup-inner {
         border-radius: 12px;
     }
@@ -292,13 +292,13 @@ leaf-footer {
         a {
             display: table-cell;
             width: 20%;
-            background-color: #000;
+            background-color: #ae1608;
             color: #fff;
             text-decoration: none;
             text-align: center;
             height: 2.5rem;
             &.current {
-                background-color: #3fac6e;
+                background-color: #f86112;
             }
         }
         .fa {
@@ -373,7 +373,7 @@ leaf-footer {
     }
 }
 
-.ptwx-normal-header {
+.demo-normal-header {
     background-color: $green;
     height: 2.6rem;
     .leaf-header-wrapper {
@@ -416,7 +416,7 @@ leaf-footer {
 }
 
 .has-header {
-    .ptwx-normal-header+leaf-content {
+    .demo-normal-header+leaf-content {
         top: 2.6rem;
     }
 }
