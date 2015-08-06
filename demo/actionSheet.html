@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>leaf-angular UI framework</title>
+        <meta content="telephone=no,email=no" name="format-detection">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=0.4, user-scalable=no">
+        <link href="../css/leaf.min.css" rel="stylesheet" type="text/css" media="all">
+        <link href="../css/main.css" rel="stylesheet" type="text/css" media="all">
+    </head>
+    <body ng-app="leafDemo" ng-cloak>
+        <leaf-wrapper ng-controller="actionSheetCtrl">
+            <leaf-content class="actionSheet-demo">
+              <div class="flex-wrapper">
+                <div class="flex-item">
+                  <div ng-click="defaultActionSheet()" class="btn"><span class="fa fa-leaf"></span>Click Me - Default<span class="fa fa-leaf"></span></div>
+                </div>
+                <div class="flex-item">
+                  <div class="btn" ng-click="customizedActionSheet()"><span class="fa fa-leaf"></span>Click Me - Double buttons<span class="fa fa-leaf"></span></div>
+                </div>
+              </div>
+            </leaf-content>
+        </leaf-wrapper>
+        <script src="../js/leaf.min.js" type="text/javascript"></script>
+        <script src="../js/app.js" type="text/javascript"></script>
+        <script src="../js/actionSheet.js" type="text/javascript"></script>
+    </body>
+</html>
