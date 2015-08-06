@@ -9,18 +9,19 @@
         position: absolute;
         bottom: 0;
         width: 100%;
+        padding-left: 30%;
+        padding-right: 30%;
         padding-bottom: $actionsheet-btn-gap;
         display: block;
         @include animation(slideUp $animation-duration ease-in);
     }
-    .leaf-popup-overlay {
-        background-color: rgba(0, 0, 0, .2);
-    }
     .leaf-popup-inner {
         border: none;
+        background-color: transparent;
     }
-    .btn {
+    .leaf-btn {
         display: block;
+        padding: 10px 0;
         border: 1px solid $border-color;
         margin-top: $actionsheet-btn-gap;
     }

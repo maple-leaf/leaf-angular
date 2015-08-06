@@ -152,6 +152,10 @@
                     ]
                 };
                 _options = angular.extend(_defaultOptions, options || {});
+                if (_options.className.indexOf("leaf-action-sheet") === -1) {
+                  // when custom className dont have 'leaf-action-sheet', fix it
+                  _options.className += "leaf-action-sheet";
+                }
                 leafPopup.init(_options);
             }
         };
