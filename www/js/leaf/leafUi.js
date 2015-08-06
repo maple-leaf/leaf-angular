@@ -34,7 +34,12 @@
                 _options = angular.extend(_defaultOptions, options || {});
                 proto = {
                     close: function() {
-                        this.ele.remove();
+                        if (this.ele.remove) {
+                            this.ele.remove();
+                        } else {
+                            // old android dont support childNode.remove
+                            this.ele.parentElement.removeChild(this.ele);
+                        }
                     },
                     hide: function() {
                         this.ele.setAttribute('style', 'display:none');
@@ -261,7 +266,19 @@
                     }
                 });
                 $rootScope.$contentScroll = scope.$leafContent.scroll = scroll;
+                $rootScope.$refresh = scope.$leafContent.refresh = function() {
+                    // not always work properly after removed
+                    //div.remove();
+                    $timeout(function() {
+                        console.log('re');
+                        scroll.refresh();
+                        if(angular.isDefined(attrs.pullLoad)) {
+                            exceedHeight = ele.children()[0].clientHeight - ele[0].clientHeight;
+                        }
+                    });
+                };
                 $timeout(function() {
+                  //TODO: should detect auto, the magic number can't work always
                     scope.$leafContent.scroll.refresh();
                 }, 500);
                 if(angular.isDefined(attrs.pullLoad)) {
@@ -323,16 +340,6 @@
                         exceedHeight = ele.children()[0].clientHeight - ele[0].clientHeight;
                     });
                 }
-                $rootScope.$refresh = scope.$leafContent.refresh = function() {
-                    // not always work properly after removed
-                    //div.remove();
-                    $timeout(function() {
-                        scroll.refresh();
-                        if(angular.isDefined(attrs.pullLoad)) {
-                            exceedHeight = ele.children()[0].clientHeight - ele[0].clientHeight;
-                        }
-                    });
-                };
             }
         };
     });
@@ -770,6 +777,9 @@
     leafUi.directive('leafTabsNav', function($rootScope, $compile) {
         return {
             restrict: 'E',
+            scope: {
+                onTabSwitched: "="
+            },
             link: function(scope, ele, attrs) {
                 var switchedTab = 0, tabs = ele.children().length;
                 ele.children()[0].classList.add('current');
@@ -791,11 +801,11 @@
                 scope.$on('tabSwitched', function() {
                     switchedTab++;
                     if (switchedTab === tabs) {
-                        // when tabSwitching looping of leafTab done
+                        // when tabSwitching loop of leafTab done
                         bindClick();
                         $rootScope.$refresh();
                         $rootScope.$contentScroll.scrollTo(0, 0);
-                        scope.$onLeafTabSwitched && scope.$onLeafTabSwitched();
+                        scope.onTabSwitched && scope.onTabSwitched();
                     }
                 });
                 bindClick();
@@ -918,13 +928,13 @@
     });
 
     leafUi.factory('leafPageload', function($document) {
-        var loadingELe = angular.element('<div class="leaf-page-loading"><div class="leaf-page-wrapper"><svg version="1.1" class="leaf-loading-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve"> <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946 s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634 c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"/> <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0 C22.32,8.481,24.301,9.057,26.013,10.047z"> <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="1s" repeatCount="indefinite"/> </path> </svg></div></div>');
+        var loadingELe = $document.find('leaf-page-loading');
         return {
             start: function() {
-                $document.find('leaf-wrapper').append(loadingELe);
+              loadingELe.removeClass('ng-hide');
             },
             done: function() {
-                loadingELe.remove();
+              loadingELe.addClass('ng-hide');
             }
         };
     });
