@@ -816,6 +816,15 @@
         };
     });
 
+    leafUi.factory('leafSidebar', function($rootScope) {
+        return {
+            toggle: function(sidebarId) {
+                $rootScope.$broadcast('toggleLeafSidebar', sidebarId);
+            }
+        };
+    });
+
+    /* @usage: <anythhing leaf-sidebar-toggle=""/"sidebarId"> (when value is empty, toggle all sidebar)*/
     leafUi.directive('leafSidebarToggle', function($rootScope) {
         return {
             restrict: 'A',

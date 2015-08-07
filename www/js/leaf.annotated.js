@@ -3138,6 +3138,15 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         };
     }]);
 
+    leafUi.factory('leafSidebar', ['$rootScope', function($rootScope) {
+        return {
+            toggle: function(sidebarId) {
+                $rootScope.$broadcast('toggleLeafSidebar', sidebarId);
+            }
+        };
+    }]);
+
+    /* @usage: <anythhing leaf-sidebar-toggle=""/"sidebarId"> (when value is empty, toggle all sidebar)*/
     leafUi.directive('leafSidebarToggle', ['$rootScope', function($rootScope) {
         return {
             restrict: 'A',
