@@ -237,7 +237,7 @@
                     ele.append(wrapper);
                 });
                 // add a empty block which height equal footer's height to make IScroll can reach bottom when init
-                var footer = ele.parent().find('leaf-footer'), div = document.createElement('div'), height, rootRem, loadMoreHtml, exceedHeight, loadingIcon, pullLoadOptions = {}, distance = -40;
+                var footer = ele.parent().find('leaf-footer'), div = document.createElement('div'), height, rootRem, loadMoreHtml, exceedHeight, loadingIcon, pullLoadOptions = {}, pullLoadDistance = -40;
                 rootRem = parseFloat(getComputedStyle(document.getElementsByTagName('html')[0]).fontSize.replace('px', ''));
                 if (footer.length) {
                     div.text = "&nbsp;";
@@ -267,7 +267,7 @@
                 });
                 $rootScope.$contentScroll = scope.$leafContent.scroll = scroll;
                 $rootScope.$refresh = scope.$leafContent.refresh = function() {
-                    // not always work properly after removed
+                    // TODO: not always work properly after removed
                     //div.remove();
                     $timeout(function() {
                         console.log('re');
@@ -298,9 +298,9 @@
                     loadMoreHtml.innerHTML = loadingIcon + "<span class='fa fa-arrow-up'></span><span class='pull-load-text'>" + (pullLoadOptions.pullText || "Pull up to load more") + "</span><span class='release-load-text'>" + (pullLoadOptions.releaseText || "Release to load more") + "</span>";
                     loadMoreHtml.setAttribute('class', 'leaf-load-more');
                     if (angular.isNumber(pullLoadOptions.distance)) {
-                        distance = -(pullLoadOptions.distance);
-                        loadMoreHtml.setAttribute('style', 'bottom:' + (distance / 2) + 'px');
-                        loadMoreHtml.children[0].setAttribute('style', 'top:' + (distance / 2) + 'px');
+                        pullLoadDistance = -(pullLoadOptions.distance);
+                        loadMoreHtml.setAttribute('style', 'bottom:' + (pullLoadDistance / 2) + 'px');
+                        loadMoreHtml.children[0].setAttribute('style', 'top:' + (pullLoadDistance / 2) + 'px');
                     }
                     ele.children().append(loadMoreHtml);
                     scope.$leafContent.pullLoad = {
@@ -316,13 +316,14 @@
                     };
                     scroll.on('scroll', function() {
                         if (scope.$leafContent.pullLoad.enabled) {
-                            if ((exceedHeight + this.y) < distance) {
+                            if ((exceedHeight + this.y) < pullLoadDistance) {
                                 loadMoreHtml.classList.add('ready-to-load');
                             } else {
                                 loadMoreHtml.classList.remove('ready-to-load');
                             }
                         }
                     });
+                    /* TODO: if desktop support required, can detect env to decide to use 'touched' or 'mouseup' */
                     ele.bind('touchend', function() {
                         if (loadMoreHtml.classList.contains('ready-to-load')) {
                             loadMoreHtml.classList.remove('ready-to-load');
