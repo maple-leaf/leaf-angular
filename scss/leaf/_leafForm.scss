@@ -1,7 +1,7 @@
 @import  '../bourbon/bourbon';
 @import  'variables';
 
-input[type=number], input[type="text"], input[type="password"] {
+input[type="number"], input[type="text"], input[type="password"], input[type="email"] {
     width: 100%;
     box-sizing: border-box;
     border: 1px solid $border-color;
@@ -13,7 +13,7 @@ input[type=number], input[type="text"], input[type="password"] {
     }
 }
 
-input[type=number] {
+input[type="number"] {
     &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;

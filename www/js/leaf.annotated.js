@@ -3138,10 +3138,11 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         };
     }]);
 
-    leafUi.factory('leafSidebar', ['$rootScope', function($rootScope) {
+    leafUi.factory('leafSidebar', ['$rootScope', '$timeout', function($rootScope, $timeout) {
         return {
             toggle: function(sidebarId) {
-                $rootScope.$broadcast('toggleLeafSidebar', sidebarId);
+                // prevent 'inprog' caused by 'ng-click' function call
+                $timeout(function() { $rootScope.$broadcast('toggleLeafSidebar', sidebarId); });
             }
         };
     }]);
