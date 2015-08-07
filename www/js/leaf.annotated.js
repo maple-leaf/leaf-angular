@@ -2341,7 +2341,8 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         *                  //this.remove();
         *              }
         *          }
-        *      ] || false  // when set to false and footerHtml not being specified, footer will disapper
+        *      ] || false,  // when set to false and footerHtml not being specified, footer will disapper
+        *      autoClose, // Integer
         *
         * })
         *
@@ -2450,6 +2451,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                             // Run in $timeout to make sure that everything done
                             _options.afterPopup.call(_this, ele);
                         });
+                        _options.autoClose && angular.isNumber(_options.autoClose) && $timeout(function() { _this.close(); }, _options.autoClose);
                     }, function() {
                     });
                 };
