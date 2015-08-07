@@ -2401,7 +2401,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                     if (_options.footerHtml) {
                         footerHtml = _options.footerHtml;
                     } else {
-                        if (_options.btns === false) {
+                        if (_options.btns === false || _options.autoClose) {
                             footerHtml = "";
                         } else {
                             footerHtml = '<div class="leaf-popup-footer">';
