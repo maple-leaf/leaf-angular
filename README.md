@@ -11,3 +11,12 @@ Leaf-angular
 
 - Author: maple-leaf
 - Email: tjfdfs@gmail.com
+
+# Changelog
+
+- 0.1版本于2015-8-10发布，demo完成
+
+# TODO
+
+- 提供api文档
+- 提供一套基础样式
