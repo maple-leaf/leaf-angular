@@ -245,9 +245,9 @@
                 // add a empty block which height equal footer's height to make IScroll can reach bottom when init
                 var footer = ele.parent().find('leaf-footer'), div = document.createElement('div'), height, rootRem, loadMoreHtml, exceedHeight, loadingIcon, pullLoadOptions = {}, pullLoadDistance = -40;
                 rootRem = parseFloat(getComputedStyle(document.getElementsByTagName('html')[0]).fontSize.replace('px', ''));
-                if (footer.length) {
+                if (footer.length || angular.isDefined(attrs.offset)) {
                     div.text = "&nbsp;";
-                    height = footer[0].clientHeight;
+                    height = footer[0] ? footer[0].clientHeight : 0;
                     if (angular.isDefined(attrs.offset) && !isNaN(parseFloat(attrs.offset))) {
                         if (attrs.offset.indexOf('rem') !== -1) {
                             height += (parseFloat(attrs.offset.replace('rem', '')) * rootRem);
@@ -276,7 +276,6 @@
                     // TODO: not always work properly after removed
                     //div.remove();
                     $timeout(function() {
-                        console.log('re');
                         scroll.refresh();
                         if(angular.isDefined(attrs.pullLoad)) {
                             exceedHeight = ele.children()[0].clientHeight - ele[0].clientHeight;
