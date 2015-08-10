@@ -1,3 +1,0 @@
-leafDemo.controller('homeCtrl', function() {
-
-});

@@ -9,7 +9,7 @@ leafDemo.controller('actionSheetCtrl', function($scope, leafActionSheet) {
         {
           name: "ok",
           text: "Ok",
-          className: "btn btn-success",
+          className: "leaf-btn btn-success",
           onTap: function() {
             alert('Yeah~~~!!!');
             this.close();
@@ -18,7 +18,7 @@ leafDemo.controller('actionSheetCtrl', function($scope, leafActionSheet) {
         {
           name: "remove",
           text: "Remove",
-          className: "btn btn-danger",
+          className: "leaf-btn btn-danger",
           onTap: function() {
             alert('Wow~~~!!!');
             this.close();
@@ -26,7 +26,7 @@ leafDemo.controller('actionSheetCtrl', function($scope, leafActionSheet) {
         },
         {
           name: "nothing",
-          className: "btn",
+          className: "leaf-btn",
           text: "nothing happen",
         }
       ]

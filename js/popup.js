@@ -27,5 +27,13 @@ leafDemo.controller('popupCtrl', function($scope, leafPopup) {
         }
       ]
     });
+  }
+  $scope.autoClosePopup = function() {
+    leafPopup.init({
+      title: "!~leaf popup demo~!",
+      className: "demo-popup",
+      template: "This popup will close in 2 seconds",
+      autoClose: 2000
+    });
   };
 });
