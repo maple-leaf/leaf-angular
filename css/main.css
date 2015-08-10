@@ -34,6 +34,11 @@ leaf-content {
 
 .home-popup .leaf-popup-content {
   border-bottom: 1px solid #e6e6e6;
+  display: flex;
+}
+
+.home-popup .leaf-popup-content .leaf-btn {
+  line-height: 1.5;
 }
 
 .flex-wrapper {
