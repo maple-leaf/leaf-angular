@@ -5,8 +5,8 @@ leafDemo.controller('homeCtrl', function($scope, leafPopup) {
 	if (!isMobile) {
 		leafPopup.init({
 			className: 'home-popup',
-			header: "扫描qrcode，在手机中浏览",
-			template: '<img src="images/github-gh-page-qrcode.png" alt="http://maple-leaf.github.io/leaf-angular/">'
+			title: "扫描二维码，在手机中浏览",
+			template: '<img src="images/github-gh-page-qrcode.png" alt="http://maple-leaf.github.io/leaf-angular/"><div>由于本UI是针对手机端，所以在桌面环境下有小部分功能不支持。所以在手机中浏览demo效果更佳</div>'
 		});
 	}
 });
