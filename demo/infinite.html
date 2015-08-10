@@ -13,6 +13,7 @@
     <body ng-app="leafDemo" ng-cloak>
         <leaf-wrapper ng-controller="infiniteCtrl">
             <leaf-content pull-load='{"load": "loadMore"}'>
+              <div ng-hide="isMobile()">本demo无法在非触摸设备中运行</div>
               <ul class="home list">
                 <li ng-repeat="data in datas track by $index"> {{ data }}</li>
               </ul>

@@ -28,6 +28,14 @@ leaf-content {
   color: #333;
 }
 
+.home-popup {
+  text-align: center;
+}
+
+.home-popup .leaf-popup-content {
+  border-bottom: 1px solid #e6e6e6;
+}
+
 .flex-wrapper {
   display: flex;
   flex-direction: column;

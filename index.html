@@ -12,7 +12,7 @@
     </head>
     <body ng-app="leafDemo" ng-cloak>
         <leaf-wrapper>
-            <leaf-content>
+            <leaf-content ng-controller="homeCtrl">
               <ul class="home list">
                 <li><a href="demo/layout.html">布局/layout</a></li>
                 <li><a href="demo/form.html">表单/form</a></li>
@@ -24,15 +24,10 @@
                 <li><a href="demo/slider.html">轮播/slider</a></li>
                 <li><a href="demo/infinite.html">无限加载/infinite</a></li>
               </ul>
-                <!-- <div class="page-block">
-                    <div class="title-bar"><span class="fa fa-qrcode"></span><span>View the demo on mobile by scanning qrcode below</span></div>
-                    <div class="block-content">
-                      <img src="images/github-gh-page-qrcode.png" alt="http://maple-leaf.github.io/leaf-angular/">
-                    </div>
-                </div> -->
             </leaf-content>
         </leaf-wrapper>
         <script src="js/leaf.min.js" type="text/javascript"></script>
         <script src="js/app.js" type="text/javascript"></script>
+        <script src="js/home.js" type="text/javascript"></script>
     </body>
 </html>
