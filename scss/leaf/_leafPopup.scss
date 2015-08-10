@@ -45,4 +45,11 @@
 
 .leaf-popup-footer {
     text-align: center;
+    display: table;
+    width: 100%;
+}
+
+.leaf-popup-footer .leaf-btn {
+    display: table-cell;
+    line-height: 1.5;
 }

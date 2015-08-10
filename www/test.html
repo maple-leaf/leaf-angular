@@ -12,29 +12,9 @@
     </head>
     <body ng-app="leafDemo" ng-cloak>
         <leaf-wrapper ng-controller="homeCtrl">
-            <leaf-header>
-                <span class="fa fa-leaf" leaf-sidebar-toggle></span>
-                <!-- <input type="search" name="search" placeholder="search"> -->
-                <span class="title">Leaf-angular UI Framework</span>
-                <a href="mailto:tangjf.88@163.com" class="fa fa-envelope"></a>
-            </leaf-header>
             <leaf-content pull-load='{"load": "loadMore"}'>
-                <leaf-slider id="homeSlider">
-                    <img src="images/maple.jpg">
-                    <img src="images/maple.jpg">
-                    <img src="images/maple.jpg">
-                </leaf-slider>
-                <ul class="nav page-block">
-                    <li><a href="#"><span class="circle"><span class="fa fa-leaf"></span></span>leaf</a></li>
-                    <li><a href="#"><span class="circle"><span class="fa fa-mobile"></span></span>framework</a></li>
-                    <li><a href="#"><span class="circle"><span class="fa fa-angle-right"></span></span>by</a></li>
-                    <li><a href="#"><span class="circle"><span class="fa fa-github"></span></span>maple-leaf</a></li>
-                </ul>
-                </div>
                 <div class="page-block">
-                    <div class="title-bar"><span class="fa fa-qrcode"></span><span>View the demo on mobile by scanning qrcode below</span></div>
                     <div class="block-content">
-                      <img src="images/github-gh-page-qrcode.png" alt="http://maple-leaf.github.io/leaf-angular/">
                         <leaf-radio radios="radios" ng-model="radio"></leaf-radio>
                         <leaf-checkbox checkboxes="checkboxes" ng-model="checkbox"></leaf-checkbox>
                         <leaf-datepicker ng-model="date"></leaf-datepicker>
@@ -42,15 +22,6 @@
                     </div>
                 </div>
             </leaf-content>
-            <leaf-sidebar>
-                <h2>Leaf-angular Framework</h2>
-                <ul class="list">
-                    <li><a href="#"><span class="fa fa-tags"></span><span>Based on Angularjs</span></a></li>
-                    <li><a href="#"><span class="fa fa-tags"></span><span>Author: maple-leaf</span></a></li>
-                    <li><a href="#"><span class="fa fa-tags"></span><span>Email: tjfdfs@gmail.com<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tangjf.88@163.com</span></a></li>
-                </ul>
-                <div class="github"><a href="https://github.com/maple-leaf/leaf-angular"><span class="fa fa-github"></span><span>star/fork me on github</span></a></div>
-            </leaf-sidebar>
         </leaf-wrapper>
         <script src="js/leaf.js" type="text/javascript"></script>
         <script src="js/app.js" type="text/javascript"></script>

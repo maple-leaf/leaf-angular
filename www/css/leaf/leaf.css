@@ -4338,6 +4338,14 @@ leaf-select, leaf-radio, leaf-checkbox, leaf-toggle, leaf-datepicker {
 /* line 46, ../../../scss/leaf/_leafPopup.scss */
 .leaf-popup-footer {
   text-align: center;
+  display: table;
+  width: 100%;
+}
+
+/* line 52, ../../../scss/leaf/_leafPopup.scss */
+.leaf-popup-footer .leaf-btn {
+  display: table-cell;
+  line-height: 1.5;
 }
 
 /* line 1, ../../../scss/leaf/_leafTab.scss */

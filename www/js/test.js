@@ -1,4 +1,4 @@
-leafDemo.controller('homeCtrl', function($scope, demo, model, leafActionSheet) {
+leafDemo.controller('homeCtrl', function($scope, demo, model, leafActionSheet, leafPopup) {
     angular.extend($scope, model);
     $scope.radios = [
     	{
@@ -22,4 +22,5 @@ leafDemo.controller('homeCtrl', function($scope, demo, model, leafActionSheet) {
         }
     ];
     $scope.checkbox = ["1"];
+    leafPopup.init();
 });
