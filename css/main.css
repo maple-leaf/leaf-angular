@@ -7,15 +7,9 @@ html {
   }
 }
 
-@media(max-width: 480px) {
-  html {
-    font-size: 24px;
-  }
-}
-
 @media(max-width: 640px) {
   html {
-    font-size: 32px;
+    font-size: 24px;
   }
 }
 
