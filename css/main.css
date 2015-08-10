@@ -36,14 +36,6 @@ leaf-content {
   border-bottom: 1px solid #e6e6e6;
 }
 
-.home-popup .leaf-popup-footer {
-  display: flex;
-}
-
-.home-popup .leaf-popup-footer .leaf-btn {
-  line-height: 1.5;
-}
-
 .flex-wrapper {
   display: flex;
   flex-direction: column;
@@ -105,10 +97,6 @@ a {
   color: #20AD20;
   display: flex;
   justify-content: center;
-}
-
-.leaf-popup-footer .leaf-btn {
-  flex: 1;
 }
 
 .leaf-popup-footer .leaf-btn:nth-child(2) {
