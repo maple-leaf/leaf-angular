@@ -3071,11 +3071,18 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 } else if (!angular.isArray(scope.ngModel)) {
                     throw "ng-model must be a Array";
                     return;
+                } else {
+                    scope.ngModel.forEach(function(v) {
+                        if (!angular.isString(v)) {
+                            throw 'value in ng-model must be a string';
+                            return;
+                        }
+                    })
                 }
                 if (scope.checkboxes) {
                     var html = "";
                     scope.checkboxes.forEach(function(checkbox) {
-                        html += '<label class="' + (scope.ngModel === checkbox.value ? "checkbox checked" : "checkbox") + '"><input type="checkbox" ng-model="ngModel" value="' + checkbox.value + '">'
+                        html += '<label class="' + (scope.ngModel[0] === checkbox.value.toString() ? "checkbox checked" : "checkbox") + '"><input type="checkbox" ng-model="ngModel" value="' + checkbox.value + '">'
                              +  iconsHtml
                              +  '<span class="checkbox-text">' + checkbox.text + '</span>'
                              +  '</label>';
