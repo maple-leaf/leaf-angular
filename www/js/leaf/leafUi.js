@@ -626,7 +626,7 @@
 
     leafUi.directive('leafToggle', function() {
         var tpl = "<div class='leaf-toggle-wrapper'>"
-                +   "<span class='leaf-toggle-label'></span>"
+                +   "<span class='leaf-toggle-label'>{{ label }}</span>"
                 +   "<span ng-class='{\"leaf-toggle-toggler actived\": ngModel, \"leaf-toggle-toggler\": !ngModel}' ng-click='$toggleState()'><span class='leaf-toggle-spinner'></span></span>"
                 + "</div>";
         return {
@@ -634,7 +634,8 @@
             restrict: 'E',
             transclude: true,
             scope: {
-                ngModel: "="
+                ngModel: "=",
+                label: "@"
             },
             controller: function($scope) {
                 $scope.$toggleState = function() {
