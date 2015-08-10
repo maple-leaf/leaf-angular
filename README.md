@@ -12,6 +12,14 @@ Leaf-angular
 - Author: maple-leaf
 - Email: tjfdfs@gmail.com
 
+# 使用到的第三方js或者css
+- [angularjs](https://github.com/angular/angular)
+- [iscroll](https://github.com/cubiq/iscroll)
+- [swiper.js](https://github.com/nolimits4web/Swiper)
+- [bourbon](https://github.com/thoughtbot/bourbon)
+- [fontawesome](http://fontawesome.io/)
+
+
 # Changelog
 
 - 0.1版本于2015-8-10发布，demo完成
