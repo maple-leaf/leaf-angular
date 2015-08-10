@@ -3856,7 +3856,7 @@ leaf-sidebar {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 99999;
+  z-index: 9999;
   overflow: hidden;
   -webkit-transform: translate(-100%, 0) translateZ(0);
   -moz-transform: translate(-100%, 0) translateZ(0);
@@ -4068,7 +4068,7 @@ leaf-page-loading {
 /* Form */
 /* ActionSheet */
 /* line 4, ../../../scss/leaf/_leafForm.scss */
-input[type=number], input[type="text"], input[type="password"] {
+input[type="number"], input[type="text"], input[type="password"], input[type="email"] {
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #e6e6e6;
@@ -4077,24 +4077,24 @@ input[type=number], input[type="text"], input[type="password"] {
   color: #000;
 }
 /* line 4, ../../../scss/bourbon/css3/_placeholder.scss */
-input[type=number]::-webkit-input-placeholder, input[type="text"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder {
+input[type="number"]::-webkit-input-placeholder, input[type="text"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder, input[type="email"]::-webkit-input-placeholder {
   color: #ddd;
 }
 /* line 4, ../../../scss/bourbon/css3/_placeholder.scss */
-input[type=number]::-moz-placeholder, input[type="text"]::-moz-placeholder, input[type="password"]::-moz-placeholder {
+input[type="number"]::-moz-placeholder, input[type="text"]::-moz-placeholder, input[type="password"]::-moz-placeholder, input[type="email"]::-moz-placeholder {
   color: #ddd;
 }
 /* line 4, ../../../scss/bourbon/css3/_placeholder.scss */
-input[type=number]:-moz-placeholder, input[type="text"]:-moz-placeholder, input[type="password"]:-moz-placeholder {
+input[type="number"]:-moz-placeholder, input[type="text"]:-moz-placeholder, input[type="password"]:-moz-placeholder, input[type="email"]:-moz-placeholder {
   color: #ddd;
 }
 /* line 4, ../../../scss/bourbon/css3/_placeholder.scss */
-input[type=number]:-ms-input-placeholder, input[type="text"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder {
+input[type="number"]:-ms-input-placeholder, input[type="text"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder, input[type="email"]:-ms-input-placeholder {
   color: #ddd;
 }
 
 /* line 17, ../../../scss/leaf/_leafForm.scss */
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

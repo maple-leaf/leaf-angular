@@ -35,6 +35,8 @@
                     <div class="title-bar"><span class="fa fa-qrcode"></span><span>View the demo on mobile by scanning qrcode below</span></div>
                     <div class="block-content">
                       <img src="images/github-gh-page-qrcode.png" alt="http://maple-leaf.github.io/leaf-angular/">
+                        <leaf-radio radios="radios" ng-model="radio"></leaf-radio>
+                        <leaf-datepicker ng-model="date"></leaf-datepicker>
                     </div>
                 </div>
             </leaf-content>
@@ -55,7 +57,7 @@
                 </nav>
             </leaf-footer>
         </leaf-wrapper>
-        <script src="js/leaf.min.js" type="text/javascript"></script>
+        <script src="js/leaf.js" type="text/javascript"></script>
         <script src="js/app.js" type="text/javascript"></script>
         <script type="text/javascript">
             leafDemo.value('model', {

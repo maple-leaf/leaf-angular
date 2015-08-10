@@ -2789,7 +2789,6 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                         template: optionTpl,
                         scope: $scope,
                         className: 'leaf-datepicker-popup',
-                        btns: false,
                         afterPopup: function(ele) {
                             var yearScroller  = leafScroll.get('yearScroll'), monthScroller  = leafScroll.get('monthScroll'), dayScroller  = leafScroll.get('dayScroll'), itemHeight = ele[0].querySelector('.item').clientHeight;
                             yearScroller.refresh();
@@ -2955,7 +2954,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 if (scope.radios) {
                     var html = "";
                     scope.radios.forEach(function(radio) {
-                        html += '<label class="radio"><input type="radio" ng-model="ngModel" value="' + radio.value + '">'
+                        html += '<label class="' + (scope.ngModel === radio.value ? "radio checked" : "radio") + '"><input type="radio" ng-model="ngModel" value="' + radio.value + '">'
                              +  iconsHtml
                              +  '<span class="radio-text">' + radio.text + '</span>'
                              +  '</label>';
@@ -3039,7 +3038,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 if (scope.checkboxes) {
                     var html = "";
                     scope.checkboxes.forEach(function(checkbox) {
-                        html += '<label class="checkbox"><input type="checkbox" ng-model="ngModel" value="' + checkbox.value + '">'
+                        html += '<label class="' + (scope.ngModel === radio.value ? "checkbox checked" : "checkbox") + '"><input type="checkbox" ng-model="ngModel" value="' + checkbox.value + '">'
                              +  iconsHtml
                              +  '<span class="checkbox-text">' + checkbox.text + '</span>'
                              +  '</label>';
