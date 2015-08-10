@@ -3075,7 +3075,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 if (scope.checkboxes) {
                     var html = "";
                     scope.checkboxes.forEach(function(checkbox) {
-                        html += '<label class="' + (scope.ngModel === radio.value ? "checkbox checked" : "checkbox") + '"><input type="checkbox" ng-model="ngModel" value="' + checkbox.value + '">'
+                        html += '<label class="' + (scope.ngModel === checkbox.value ? "checkbox checked" : "checkbox") + '"><input type="checkbox" ng-model="ngModel" value="' + checkbox.value + '">'
                              +  iconsHtml
                              +  '<span class="checkbox-text">' + checkbox.text + '</span>'
                              +  '</label>';
