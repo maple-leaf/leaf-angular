@@ -3937,7 +3937,7 @@ leaf-header {
   top: 0;
   height: 60px;
   width: 100%;
-  z-index: 9999;
+  z-index: 9998;
 }
 
 /* line 93, ../../../scss/leaf/_main.scss */
@@ -3946,7 +3946,7 @@ leaf-footer {
   bottom: 0;
   height: 60px;
   width: 100%;
-  z-index: 9999;
+  z-index: 9998;
 }
 
 /* line 101, ../../../scss/leaf/_main.scss */

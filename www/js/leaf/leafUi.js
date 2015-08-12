@@ -496,6 +496,12 @@
                                     $scope.$pickedYear = $scope.$pickedYearTemp;
                                     $scope.$pickedMonth = $scope.$pickedMonthTemp;
                                     $scope.$pickedDay = $scope.$pickedDayTemp;
+                                    $scope.ngModel = {
+                                        year: $scope.$pickedYear,
+                                        month: $scope.$pickedMonth,
+                                        day: $scope.$pickedDay,
+                                        timestamp: new Date($scope.$pickedYear + '-' + $scope.$pickedMonth + '-' + $scope.$pickedDay).getTime()
+                                    };
                                 }
                             }
                         ],
