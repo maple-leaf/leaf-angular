@@ -4124,8 +4124,9 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
   line-height: 1;
   -webkit-box-shadow: 1px 1px 1px #ddd inset;
   box-shadow: 1px 1px 1px #ddd inset;
+  text-align: left;
 }
-/* line 44, ../../../scss/leaf/_leafForm.scss */
+/* line 45, ../../../scss/leaf/_leafForm.scss */
 .leaf-toggle-wrapper .leaf-toggle-toggler.actived {
   background-color: #4D9EDC;
   -webkit-box-shadow: none;
@@ -4133,14 +4134,14 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
   -webkit-transition: background-color .1s linear;
   transition: background-color .1s linear;
 }
-/* line 50, ../../../scss/leaf/_leafForm.scss */
+/* line 51, ../../../scss/leaf/_leafForm.scss */
 .leaf-toggle-wrapper .leaf-toggle-toggler.actived .leaf-toggle-spinner {
   -webkit-transform: translate3d(32px, 0, 0);
   transform: translate3d(32px, 0, 0);
   -webkit-transition: -webkit-transform .1s linear;
   transition: transform .1s linear;
 }
-/* line 58, ../../../scss/leaf/_leafForm.scss */
+/* line 59, ../../../scss/leaf/_leafForm.scss */
 .leaf-toggle-wrapper .leaf-toggle-spinner {
   display: inline-block;
   width: 30px;
@@ -4154,7 +4155,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
   transition: transform .1s linear;
 }
 
-/* line 72, ../../../scss/leaf/_leafForm.scss */
+/* line 73, ../../../scss/leaf/_leafForm.scss */
 leaf-select, leaf-radio, leaf-checkbox, leaf-toggle, leaf-datepicker {
   display: block;
 }
@@ -4165,45 +4166,45 @@ leaf-select, leaf-radio, leaf-checkbox, leaf-toggle, leaf-datepicker {
   content: "";
   display: table;
 }
-/* line 78, ../../../scss/leaf/_leafForm.scss */
+/* line 79, ../../../scss/leaf/_leafForm.scss */
 .leaf-radio-wrapper .radio {
   position: relative;
   display: block;
 }
-/* line 83, ../../../scss/leaf/_leafForm.scss */
+/* line 84, ../../../scss/leaf/_leafForm.scss */
 .leaf-radio-wrapper.horizontal .radio {
   float: left;
   margin-right: 15px;
 }
-/* line 87, ../../../scss/leaf/_leafForm.scss */
+/* line 88, ../../../scss/leaf/_leafForm.scss */
 .leaf-radio-wrapper.horizontal .fa-check-circle-o {
   display: none;
 }
-/* line 91, ../../../scss/leaf/_leafForm.scss */
+/* line 92, ../../../scss/leaf/_leafForm.scss */
 .leaf-radio-wrapper.horizontal .checked .fa-check-circle-o {
   display: inline-block;
 }
-/* line 94, ../../../scss/leaf/_leafForm.scss */
+/* line 95, ../../../scss/leaf/_leafForm.scss */
 .leaf-radio-wrapper.horizontal .checked .fa-circle-o {
   display: none;
 }
-/* line 99, ../../../scss/leaf/_leafForm.scss */
+/* line 100, ../../../scss/leaf/_leafForm.scss */
 .leaf-radio-wrapper input[type="radio"] {
   display: none;
 }
-/* line 102, ../../../scss/leaf/_leafForm.scss */
+/* line 103, ../../../scss/leaf/_leafForm.scss */
 .leaf-radio-wrapper .fa {
   width: 35px;
 }
-/* line 105, ../../../scss/leaf/_leafForm.scss */
+/* line 106, ../../../scss/leaf/_leafForm.scss */
 .leaf-radio-wrapper .fa-check {
   opacity: 0;
 }
-/* line 109, ../../../scss/leaf/_leafForm.scss */
+/* line 110, ../../../scss/leaf/_leafForm.scss */
 .leaf-radio-wrapper .checked .fa-check {
   opacity: 1;
 }
-/* line 113, ../../../scss/leaf/_leafForm.scss */
+/* line 114, ../../../scss/leaf/_leafForm.scss */
 .leaf-radio-wrapper .radio-text {
   vertical-align: middle;
 }
@@ -4214,50 +4215,50 @@ leaf-select, leaf-radio, leaf-checkbox, leaf-toggle, leaf-datepicker {
   content: "";
   display: table;
 }
-/* line 120, ../../../scss/leaf/_leafForm.scss */
+/* line 121, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper .checkbox {
   position: relative;
   display: block;
 }
-/* line 125, ../../../scss/leaf/_leafForm.scss */
+/* line 126, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper.horizontal .checkbox {
   float: left;
   margin-right: 15px;
 }
-/* line 129, ../../../scss/leaf/_leafForm.scss */
+/* line 130, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper.horizontal .fa-check-square-o {
   display: none;
 }
-/* line 133, ../../../scss/leaf/_leafForm.scss */
+/* line 134, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper.horizontal .checked .fa-check-square-o {
   display: inline-block;
 }
-/* line 136, ../../../scss/leaf/_leafForm.scss */
+/* line 137, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper.horizontal .checked .fa-square-o {
   display: none;
 }
-/* line 141, ../../../scss/leaf/_leafForm.scss */
+/* line 142, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper input[type="checkbox"] {
   display: none;
 }
-/* line 144, ../../../scss/leaf/_leafForm.scss */
+/* line 145, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper .fa {
   width: 35px;
 }
-/* line 147, ../../../scss/leaf/_leafForm.scss */
+/* line 148, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper .fa-check {
   opacity: 0;
 }
-/* line 151, ../../../scss/leaf/_leafForm.scss */
+/* line 152, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper .checked .fa-check {
   opacity: 1;
 }
-/* line 155, ../../../scss/leaf/_leafForm.scss */
+/* line 156, ../../../scss/leaf/_leafForm.scss */
 .leaf-checkbox-wrapper .checkbox-text {
   vertical-align: middle;
 }
 
-/* line 161, ../../../scss/leaf/_leafForm.scss */
+/* line 162, ../../../scss/leaf/_leafForm.scss */
 .leaf-datepicker-popup .leaf-popup-content {
   text-align: center;
   padding: 0 2%;
@@ -4268,22 +4269,22 @@ leaf-select, leaf-radio, leaf-checkbox, leaf-toggle, leaf-datepicker {
   content: "";
   display: table;
 }
-/* line 166, ../../../scss/leaf/_leafForm.scss */
+/* line 167, ../../../scss/leaf/_leafForm.scss */
 .leaf-datepicker-popup .list {
   height: 390px;
   width: 16%;
   float: left;
 }
-/* line 171, ../../../scss/leaf/_leafForm.scss */
+/* line 172, ../../../scss/leaf/_leafForm.scss */
 .leaf-datepicker-popup .text {
   line-height: 390px;
   text-transform: capitalize;
 }
-/* line 175, ../../../scss/leaf/_leafForm.scss */
+/* line 176, ../../../scss/leaf/_leafForm.scss */
 .leaf-datepicker-popup .item {
   line-height: 78px;
 }
-/* line 178, ../../../scss/leaf/_leafForm.scss */
+/* line 179, ../../../scss/leaf/_leafForm.scss */
 .leaf-datepicker-popup .picked {
   color: #3fab6d;
 }

@@ -41,6 +41,7 @@ input[type="number"] {
         line-height: 1;
         -webkit-box-shadow: 1px 1px 1px #ddd inset;
         box-shadow: 1px 1px 1px #ddd inset;
+        text-align: left; // prevent from being affected by inherited alignment
         &.actived {
             background-color: #4D9EDC;
             -webkit-box-shadow: none;
