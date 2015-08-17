@@ -930,25 +930,59 @@
     });
 
     leafUi.directive('leafSlider', function($timeout) {
+        // http://stackoverflow.com/a/17708080
         var tpl = "<div class='swiper-wrapper' ng-transclude></div>";
         return {
             template: tpl,
             restrict: 'E',
             transclude: true,
+            controller: function($scope, $element) {
+                var count = 0;
+                $timeout(function() {
+                    $scope.$swiper = new Swiper($element, {
+                        autoplay: 1000,
+                        speed: 400,
+                        spaceBetween: 100,
+                        pagination: '.swiper-pagination'
+                    });
+                });
+            },
             link: function(scope, ele, attrs) {
-                var swiper;
+                var swiper, slides = ele.children().children();
                 ele.attr('class', 'swiper-container');
-                angular.forEach(ele.children().children(), function(child) {
-                    angular.element(child).wrap('<div class="swiper-slide"></div>');
-                });
                 ele.append('<div class="swiper-pagination"></div>');
-                swiper = new Swiper(ele[0], {
-                    autoplay: 1000,
-                    speed: 400,
-                    spaceBetween: 100,
-                    pagination: '.swiper-pagination'
-                });
+                if (slides.length) {
+                    // when using ng-repeat, length will be 0, you should use 'leafSlide' directive
+                    // <leaf-slider>
+                    //     <img ng-src="{{ imgs[0] }}">
+                    //     <img ng-src="{{ imgs[0] }}">
+                    // </leaf-slider>
+                    angular.forEach(ele.children().children(), function(child) {
+                        angular.element(child).wrap('<div class="swiper-slide"></div>');
+                    });
+                    scope.$swiper = new Swiper(ele[0], {
+                        autoplay: 1000,
+                        speed: 400,
+                        spaceBetween: 100,
+                        pagination: '.swiper-pagination'
+                    });
+                }
             }
+        };
+    });
+
+    leafUi.directive('leafSlide', function($timeout) {
+        // <leaf-slider>
+        //     <leaf-slide ng-repeat="img in imgs track by $index">
+        //         <img ng-src="{{ img }}">
+        //     </leaf-slide>
+        // </leaf-slider>
+        return {
+            require: '^leafSlider',
+            template: "<div class='swiper-slide' ng-transclude></div>",
+            replace: true,
+            transclude: true,
+            restrict: 'E'
         };
     });
 
