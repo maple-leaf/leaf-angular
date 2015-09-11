@@ -1,0 +1,103 @@
+html {
+	font-size: 16px;
+}
+h1 {
+	font-size: 1.5rem;
+	text-align: center;
+	margin: 0;
+}
+.todos {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+	font-size: 1rem;
+}
+.todos li {
+	border-bottom: 1px solid #eee;
+}
+.todos .todo {
+	/*position: absolute;*/
+	z-index: 10;
+	padding: 8px 5px 8px 10px;
+	white-space: nowrap;
+}
+.todos .text {
+	display: inline-block;
+	width: 20rem;
+}
+.todos .operation {
+	display: inline-block;
+}
+.todos .operation span {
+	display: inline-block;
+	height: 100%;
+	background-color: #eee;
+	padding: 8px 10px;
+}
+.todos .operation .remove {
+	background-color: #F32342;
+	color: #fff;
+}
+leaf-footer {
+    line-height: 60px;
+    text-align: center;
+    color: #7CBDAC;
+    font-size: 3rem;
+    border-top: 1px solid #eee;
+}
+.leaf-footer-wrapper {
+	height: 100%;
+}
+.flex, .leaf-footer-wrapper {
+    display:       -moz-box  !important;        /*  Old Version:  Firefox (buggy)  */
+    display:    -webkit-box  !important;        /*  Old Version:  Safari, iOS, Android Browser, older WebKit Browsers  */
+    display:         -o-box  !important;        /*  Classic Opera  */
+    display:        -ms-flexbox  !important;    /*  Mix Version:  IE 10  */
+    display:       -moz-flex  !important;
+    display:    -webkit-flex  !important;
+    display:         -o-flex  !important;
+    display:            flex  !important;
+    width:              100%;
+
+}
+.flex.center, .leaf-footer-wrapper {
+    -moz-box-pack:           center;
+    -webkit-box-pack:           center;
+         -o-box-pack:           center;
+        -ms-flex-pack:          center;
+       -moz-justify-content:    center;
+    -webkit-justify-content:    center;
+         -o-justify-content:    center;
+            justify-content:    center;
+	-webkit-box-align:      center;
+       -moz-box-align:      center;
+        -ms-flex-align:     center;
+       -moz-align-items:    center;
+    -webkit-align-items:    center;
+         -o-align-items:    center;
+            align-items:    center;
+}
+
+leaf-sidebar .leaf-sidebar-wrapper {
+	width: 100%;
+}
+
+.todo-text {
+	padding-left: 10px;
+}
+
+.btns {
+	position: absolute;
+    bottom: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+.btns .btn {
+	flex: 1;
+	padding: 10px 0;
+}
+.btns .btn:first-child {
+	border-right: 1px solid #eee;
+}

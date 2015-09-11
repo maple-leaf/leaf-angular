@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>TODO</title>
+        <meta content="telephone=no,email=no" name="format-detection">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=0.4, user-scalable=no">
+        <link href="../css/leaf.min.css" rel="stylesheet" type="text/css" media="all">
+        <link href="main.css" rel="stylesheet" type="text/css" media="all">
+    </head>
+    <body ng-app="todoDemo" ng-cloak>
+        <leaf-wrapper ng-controller="todoCtrl">
+        	<leaf-header class="flex center"><h1>待办事项/TODOS</h1></leaf-header>
+            <leaf-content>
+              <ul class="todos">
+                <li ng-repeat="todo in todos track by $index"><div class="todo">{{ todo.text }}</div><div class="operation"><span class="remove">删除</span><span>修改</span></div></li>
+              </ul>
+              <div class="todos">
+              	<leaf-scroll ng-repeat="todo in todos track by $index" horizontal id="scrolls{{$index}}"><div class="todo"><div class="text">{{ todo.text }}</div><div class="operation"><span class="remove">删除</span><span>修改</span></div></div></leaf-scroll>
+              </div>
+            </leaf-content>
+            <leaf-footer class="flex center"><span class="fa fa-plus-circle" leaf-sidebar-toggle ng-click="editing=true"></span></leaf-footer>
+            <leaf-sidebar right>
+            	<textarea ng-model="editingTodo.text" class="todo-text" ng-focus="editing"></textarea>
+            	<div class="btns flex center">
+            		<span class="btn btn-cancel" leaf-sidebar-toggle ng-click="editing=false">取消</span>
+            		<span class="btn btn-confirm" leaf-sidebar-toggle ng-click="editing=false;saveTodo();">完成</span>
+            	</div>
+            </leaf-sidebar>
+        </leaf-wrapper>
+        <script src="../js/leaf.js" type="text/javascript"></script>
+        <script src="app.js" type="text/javascript"></script>
+    </body>
+</html>
