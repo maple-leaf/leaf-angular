@@ -11,9 +11,9 @@ todoDemo.controller('todoCtrl', function($scope, leafScroll) {
 		$scope.editingTodo = {};
 	};
 
-	window.ls = leafScroll;
-	console.log('controller');
-	// leafScroll.get('scrolls0').on('scrollEnd', function() {
-	// 	console.log(this);
-	// })
+	$scope.removeTodo = function(e, index) {
+		e.preventDefault();
+		e.stopPropagation();
+		console.log(index);
+	};
 });

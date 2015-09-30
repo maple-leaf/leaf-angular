@@ -24,7 +24,7 @@ leafDemo.controller('formCtrl', function($scope) {
       value: "others"
     }
   ];
-  $scope.country = "china";
+  // $scope.country = "china";
   $scope.sexOptions = [
     {
       text: "男/boy",

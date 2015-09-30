@@ -2548,6 +2548,26 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                     // disable leafContentScroll when scroll inner scroller
                     leafScroll.get('leafContentScroll').disable();
                 });
+                if (angular.isDefined(attrs.swipeMenu)) {
+                	scope.$parent.$openedMenu = [];
+                    scroll.on('flick', function() {
+                    	// TODO: 当大幅度滑动时不触发 flick
+                    	if (scope.$parent.$openedMenu.length) {
+                    		console.log(scope.$parent.$openedMenu[0]);
+                    		scope.$parent.$openedMenu[0].scrollTo(0, 0, 200);
+                    		scope.$parent.$openedMenu.length = 0;
+                    	}
+                        this.scrollTo(this.distX < 0 ? (this.flickLeft = true, this.maxScrollX) : (this.flickLeft = false, 0), 0, 200);
+                        this.flickLeft && scope.$parent.$openedMenu.push(this);
+                        console.log(scope.$parent.$offsetParent);
+                    });
+                    scroll.wrapper.addEventListener('click', function() {
+                        if(!scroll.isAnimating) {
+                            // when scrolling, if user tap very fast, the scroller will stop, so finish the scrolling by detect `flickLeft`
+                            scroll.scrollTo((scroll.x === scroll.maxScrollX || !scroll.flickLeft) ? 0 : scroll.maxScrollX, 0, 200);
+                        }
+                    }, false);
+                }
             }
         };
     });
@@ -2584,7 +2604,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                 var scroll = leafScroll.init(ele[0], {
                     id: 'leafContentScroll',
                     probeType: 3,
-                    click: true
+                    tap: true
                 });
                 scope.$leafContent = {};
                 ele.bind('touchstart', function() {
@@ -2604,10 +2624,6 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                         }
                     });
                 };
-                $timeout(function() {
-                  //TODO: should detect auto, the magic number can't work always
-                    scope.$leafContent.scroll.refresh();
-                }, 500);
                 if(angular.isDefined(attrs.pullLoad)) {
                     /*
                      * attrs.pullLoad = {
@@ -2667,7 +2683,16 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                     $timeout(function() {
                         exceedHeight = ele.children()[0].clientHeight - ele[0].clientHeight;
                     });
+                } else {
                 }
+                // $timeout(function() {
+                //     console.log('refresh after 500');
+                //   //TODO: should detect auto, the magic number can't work always
+                //     scope.$leafContent.scroll.refresh();
+                // }, 500);
+                scope.$on('leafUiReady', function() {
+                    scope.$leafContent.scroll.refresh();
+                })
             }
         };
     });
@@ -2685,7 +2710,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         };
     });
 
-    leafUi.directive('leafFooter', function(leafScroll, $document) {
+    leafUi.directive('leafFooter', function($document, leafScroll) {
         var tpl = '<div class="leaf-footer-wrapper" ng-transclude>'
                 + '</div>';
         return {
@@ -2698,7 +2723,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         };
     });
 
-    leafUi.directive('leafSelect', function(leafPopup, $document) {
+    leafUi.directive('leafSelect', function($document, leafPopup) {
         var tpl = "<div class='leaf-select-wrapper'>"
         +   "<div class='leaf-select-selected' ng-click='$showSelect()'>{{ selected }}</div>"
         + "</div>";
@@ -2763,7 +2788,7 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
         };
     });
 
-    leafUi.directive('leafDatepicker', function(leafPopup, leafScroll, $document) {
+    leafUi.directive('leafDatepicker', function($document, leafScroll, leafPopup) {
         var tpl = "<div class='leaf-datepicker-wrapper'>"
         +   "<div class='leaf-datepicker-picked' ng-click='$showDatepicker()'>{{ $pickedYear }} - {{ $pickedMonth }} - {{ $pickedDay }}</div>"
         + "</div>";
@@ -2818,6 +2843,12 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
                                     $scope.$pickedYear = $scope.$pickedYearTemp;
                                     $scope.$pickedMonth = $scope.$pickedMonthTemp;
                                     $scope.$pickedDay = $scope.$pickedDayTemp;
+                                    $scope.ngModel = {
+                                        year: $scope.$pickedYear,
+                                        month: $scope.$pickedMonth,
+                                        day: $scope.$pickedDay,
+                                        timestamp: new Date($scope.$pickedYear + '-' + $scope.$pickedMonth + '-' + $scope.$pickedDay).getTime()
+                                    };
                                 }
                             }
                         ],
@@ -3246,25 +3277,59 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
     });
 
     leafUi.directive('leafSlider', function($timeout) {
+        // http://stackoverflow.com/a/17708080
         var tpl = "<div class='swiper-wrapper' ng-transclude></div>";
         return {
             template: tpl,
             restrict: 'E',
             transclude: true,
+            controller: function($scope, $element) {
+                var count = 0;
+                $timeout(function() {
+                    $scope.$swiper = new Swiper($element, {
+                        autoplay: 1000,
+                        speed: 400,
+                        spaceBetween: 100,
+                        pagination: '.swiper-pagination'
+                    });
+                });
+            },
             link: function(scope, ele, attrs) {
-                var swiper;
+                var swiper, slides = ele.children().children();
                 ele.attr('class', 'swiper-container');
-                angular.forEach(ele.children().children(), function(child) {
-                    angular.element(child).wrap('<div class="swiper-slide"></div>');
-                });
                 ele.append('<div class="swiper-pagination"></div>');
-                swiper = new Swiper(ele[0], {
-                    autoplay: 1000,
-                    speed: 400,
-                    spaceBetween: 100,
-                    pagination: '.swiper-pagination'
-                });
+                if (slides.length) {
+                    // when using ng-repeat, length will be 0, you should use 'leafSlide' directive
+                    // <leaf-slider>
+                    //     <img ng-src="{{ imgs[0] }}">
+                    //     <img ng-src="{{ imgs[0] }}">
+                    // </leaf-slider>
+                    angular.forEach(ele.children().children(), function(child) {
+                        angular.element(child).wrap('<div class="swiper-slide"></div>');
+                    });
+                    scope.$swiper = new Swiper(ele[0], {
+                        autoplay: 1000,
+                        speed: 400,
+                        spaceBetween: 100,
+                        pagination: '.swiper-pagination'
+                    });
+                }
             }
+        };
+    });
+
+    leafUi.directive('leafSlide', function($timeout) {
+        // <leaf-slider>
+        //     <leaf-slide ng-repeat="img in imgs track by $index">
+        //         <img ng-src="{{ img }}">
+        //     </leaf-slide>
+        // </leaf-slider>
+        return {
+            require: '^leafSlider',
+            template: "<div class='swiper-slide' ng-transclude></div>",
+            replace: true,
+            transclude: true,
+            restrict: 'E'
         };
     });
 
@@ -3315,6 +3380,26 @@ window.WebKitCSSMatrix?i=new window.WebKitCSSMatrix("none"===s.webkitTransform?"
               loadingELe.addClass('ng-hide');
             }
         };
+    });
+
+    leafUi.directive('leafWrapper', function($timeout, $rootScope) {
+        return {
+            link: function () {
+                $timeout(function() {
+                    /* This is already good to go, but can't be sured.
+                        For more reliablity, use pre and post to rewrite all directive
+                        http://odetocode.com/blogs/scott/archive/2014/05/28/compile-pre-and-post-linking-in-angularjs.aspx
+                        http://www.bennadel.com/blog/2746-the-post-link-function-is-the-link-function-in-angularjs-directives.htm
+                        https://groups.google.com/forum/#!topic/angular/3HsNz4ncnYA/discussion
+                            The compilation works depth first down.  So html->alpha->beta->gamma
+                            But the post link functions come back up So gamma->beta->alpha-html
+                            Moreover if you have multiple directives on an element, they are compiled in order of their priority value, highest first, with directives of the same priority having undetermined order.
+                    // http://plnkr.co/edit/qrDMJBlnwdNlfBqEEXL2?p=preview
+                    */
+                    $rootScope.$broadcast('leafUiReady', 'all leaf ui component is ready');
+                });
+            }
+        }
     });
 })(IScroll, Swiper, window);
 

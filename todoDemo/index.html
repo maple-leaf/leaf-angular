@@ -14,19 +14,18 @@
         <leaf-wrapper ng-controller="todoCtrl">
         	<leaf-header class="flex center"><h1>待办事项/TODOS</h1></leaf-header>
             <leaf-content>
-              <ul class="todos">
-                <li ng-repeat="todo in todos track by $index"><div class="todo">{{ todo.text }}</div><div class="operation"><span class="remove">删除</span><span>修改</span></div></li>
-              </ul>
               <div class="todos">
-              	<leaf-scroll ng-repeat="todo in todos track by $index" horizontal id="scrolls{{$index}}"><div class="todo"><div class="text">{{ todo.text }}</div><div class="operation"><span class="remove">删除</span><span>修改</span></div></div></leaf-scroll>
+              	<leaf-scroll ng-repeat="todo in todos track by $index" horizontal swipe-menu><div class="todo"><div class="text">{{ todo.text }}</div><div class="operation"><span ng-click="removeTodo($event, $index)" class="done">完成</span><span ng-click="removeTodo($event, $index)">删除</span></div></div></leaf-scroll>
               </div>
             </leaf-content>
             <leaf-footer class="flex center"><span class="fa fa-plus-circle" leaf-sidebar-toggle ng-click="editing=true"></span></leaf-footer>
             <leaf-sidebar right>
-            	<textarea ng-model="editingTodo.text" class="todo-text" ng-focus="editing"></textarea>
+                <form name="todoForm" novalidate>
+            	   <textarea ng-model="editingTodo.text" class="todo-text" ng-focus="editing" required></textarea>
+                </form>
             	<div class="btns flex center">
-            		<span class="btn btn-cancel" leaf-sidebar-toggle ng-click="editing=false">取消</span>
-            		<span class="btn btn-confirm" leaf-sidebar-toggle ng-click="editing=false;saveTodo();">完成</span>
+            		<button class="btn btn-cancel" leaf-sidebar-toggle ng-click="editing=false">取消</button>
+            		<button class="btn btn-confirm" leaf-sidebar-toggle ng-click="editing=false;saveTodo();" ng-disabled="todoForm.$invalid">完成</button>
             	</div>
             </leaf-sidebar>
         </leaf-wrapper>
