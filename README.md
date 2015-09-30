@@ -19,6 +19,8 @@ Leaf-angular
 - [bourbon](https://github.com/thoughtbot/bourbon)
 - [fontawesome](http://fontawesome.io/)
 
+# 文档/Doc
+- [English doc](http://maple-leaf.github.io/leaf-angular/doc/leaf-doc.md.html)
 
 # Changelog
 
@@ -26,5 +28,5 @@ Leaf-angular
 
 # TODO
 
-- 提供api文档
+- ~~提供api文档~~
 - 提供一套基础样式
