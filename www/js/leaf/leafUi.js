@@ -695,9 +695,11 @@
                         }
                     });
                 }
-                angular.element(ele[0].querySelectorAll('.radio')).bind('click', function() {
+                angular.element(ele[0].querySelectorAll('.radio')).bind('click', function(e) {
+                    // if `input` is inside `label`, and event is binded to parent,
+                    // the event will be trigger twice, label and then input
+                    if(e.srcElement.tagName.toLowerCase() === "input") return;
                     var _this = this, checkedEle;
-                    if (_this.classList.contains('checked')) return;
                     checkedEle = _this.parentElement.querySelector('.checked');
                     if (checkedEle) {
                         checkedEle.classList.remove('checked');
@@ -786,7 +788,10 @@
                         }
                     });
                 }
-                angular.element(ele[0].querySelectorAll('.checkbox')).bind('click', function() {
+                angular.element(ele[0].querySelectorAll('.checkbox')).bind('click', function(e) {
+                    // if `input` is inside `label`, and event is binded to parent,
+                    // the event will be trigger twice, label and then input
+                    if(e.srcElement.tagName.toLowerCase() === "input") return;
                     var _this = this, value = _this.querySelector('input').value;
                     scope.$apply(function() {
                         var index = scope.ngModel.indexOf(value);
